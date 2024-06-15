@@ -138,35 +138,25 @@ namespace PayPal.Payments.Transactions
 		/// Holds the currency value, mandatory for VE.
 		/// </summary>
 		private Currency mCurrency;
+        private CreditCard  mCreditcard;
 
-		/// <summary>
-		/// Holds the Purchase Description.
-		/// </summary>
-		private String mPurDesc;
+        #endregion
 
-		private CreditCard  mCreditcard;
+        #region "Properties"
+        /// <summary>
+        /// Gets, Sets Purchase description.
+        /// <para>Maps to Payflow Parameter: - <code>PUR_DESC</code></para>
+        /// </summary>
+        public String PurDesc { get; set; }
+        #endregion
 
-		#endregion
+        #region "Constructors"
 
-		#region "Properties"
-		/// <summary>
-		/// Gets, Sets Purchase description.
-		/// <para>Maps to Payflow Parameter: - <code>PUR_DESC</code></para>
-		/// </summary>
-		public String PurDesc
-		{
-			get { return mPurDesc; }
-			set { mPurDesc = value; }
-		}
-		#endregion
-
-		#region "Constructors"
-
-		/// <summary>
-		/// Private Constructor. This prevents
-		/// creation of an empty Transaction object. 
-		/// </summary>
-		private BuyerAuthVETransaction()
+        /// <summary>
+        /// Private Constructor. This prevents
+        /// creation of an empty Transaction object. 
+        /// </summary>
+        private BuyerAuthVETransaction()
 		{
 		}
 
@@ -296,7 +286,7 @@ namespace PayPal.Payments.Transactions
 			: base(PayflowConstants.TRXTYPE_BUYERAUTH_VE, UserInfo, PayflowConnectionData, RequestId)
 		{
 			mCurrency = Currency;
-			mPurDesc = PurDesc;
+			PurDesc = PurDesc;
 			mCreditcard = CreditCard;
 
 		}
@@ -450,7 +440,7 @@ namespace PayPal.Payments.Transactions
 					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CURRENCY, mCurrency.CurrencyCode ));
 					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_AMT, mCurrency));
 				}
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PUR_DESC, mPurDesc));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PUR_DESC, PurDesc));
 			}
 			catch (BaseException)
 			{

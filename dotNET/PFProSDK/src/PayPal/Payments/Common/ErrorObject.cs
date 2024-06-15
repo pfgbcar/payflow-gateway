@@ -28,16 +28,11 @@ namespace PayPal.Payments.Common
 		/// </summary>
 		private ArrayList mMsgCodeParams;
 
-		/// <summary>
-		/// Holds the Severity Level for the error.Sets this to debug by default.
-		/// </summary>
-		private int mSeverity;
-
-		/// <summary>
-		/// Holds the stack trace, if applicable.This is helpful in case the error is an 
-		/// Exception.
-		/// </summary>
-		private String mStackTrace;
+        /// <summary>
+        /// Holds the stack trace, if applicable.This is helpful in case the error is an 
+        /// Exception.
+        /// </summary>
+        private String mStackTrace;
 
 		/// <summary>
 		/// Holds the message body for the Error.
@@ -74,20 +69,17 @@ namespace PayPal.Payments.Common
 			get { return mStackTrace; }
 		}
 
-		//Gets the property for the mSeverityLevel of the Error Object
-		/// <summary>
-		/// Gets the SeverityLevel
-		/// </summary>
-		public int SeverityLevel
-		{
-			get { return mSeverity; }
-		}
+        //Gets the property for the mSeverityLevel of the Error Object
+        /// <summary>
+        /// Gets the SeverityLevel
+        /// </summary>
+        public int SeverityLevel { get; }
 
 
-		/// <summary>
-		/// Gets MessageParams
-		/// </summary>
-		public ArrayList MessageParams
+        /// <summary>
+        /// Gets MessageParams
+        /// </summary>
+        public ArrayList MessageParams
 		{
 			get { return mMsgCodeParams; }
 		}
@@ -149,9 +141,9 @@ namespace PayPal.Payments.Common
 
 		#region "Constructors"
 
-		// Used for Validation Errors which don’t have a stack trace.
+		// Used for Validation Errors which donï¿½t have a stack trace.
 		/// <summary>
-		/// Used for Validation Errors which don’t have a stack trace.
+		/// Used for Validation Errors which donï¿½t have a stack trace.
 		/// </summary>
 		/// <param name="Severity">Severity level for the error.</param>
 		/// <param name="MsgCode">Message Code.</param>
@@ -159,7 +151,7 @@ namespace PayPal.Payments.Common
 		internal ErrorObject(int Severity, String MsgCode,
 		                   String[] MsgCodeParams)
 		{
-			this.mSeverity = Severity;
+			this.SeverityLevel = Severity;
 			this.mMsgCode = MsgCode;
 			this.mMsgCodeParams = new ArrayList();
 			this.mMsgCodeParams.AddRange(MsgCodeParams);
@@ -174,7 +166,7 @@ namespace PayPal.Payments.Common
 		/// <param name="MsgBody">Message Description for the Error.</param>
 		internal ErrorObject(int Severity, String MsgCode, String MsgBody)
 		{
-			this.mSeverity = Severity;
+			this.SeverityLevel = Severity;
 			this.mMsgCode = MsgCode;
 			this.mMsgBody = MsgBody;
 			this.mStackTrace = PayflowConstants.EMPTY_STRING;
@@ -217,7 +209,7 @@ namespace PayPal.Payments.Common
 		/// <param name="StackTrace">Stack Trace information for the Error.</param>
 		internal ErrorObject(String MsgBody, String StackTrace)
 		{
-			this.mSeverity = PayflowConstants.SEVERITY_FATAL;
+			this.SeverityLevel = PayflowConstants.SEVERITY_FATAL;
 			this.mMsgBody = MsgBody;
 			this.mStackTrace = StackTrace;
 			this.mMsgCode = PayflowConstants.EMPTY_STRING;
@@ -235,7 +227,7 @@ namespace PayPal.Payments.Common
 			this.mMsgCode = PayflowConstants.EMPTY_STRING;
 			this.mMsgCodeParams = new ArrayList();
 			this.mStackTrace = PayflowConstants.EMPTY_STRING;
-			this.mSeverity = PayflowConstants.SEVERITY_FATAL;
+			this.SeverityLevel = PayflowConstants.SEVERITY_FATAL;
 		}
 
 		#endregion

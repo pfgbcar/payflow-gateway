@@ -171,10 +171,6 @@ namespace PayPal.Payments.Communication
         private String mTransactionResponse;
 
         /// <summary>
-        /// Flag for Strong Assembly Transaction;
-        /// </summary>
-        private bool mIsStrongAssemblyTransaction;
-        /// <summary>
         /// Flag for xml pay request
         /// </summary>
         private bool mIsXmlPayRequest = false;
@@ -182,10 +178,6 @@ namespace PayPal.Payments.Communication
         /// Transaction request withought masking
         /// </summary>
         private String mTransRqst;
-        /// <summary>
-        /// Client information.
-        /// </summary>
-        private ClientInfo mClientInfo;
         #endregion
 
         #region "Constructors"
@@ -875,11 +867,7 @@ namespace PayPal.Payments.Communication
         /// Transaction.
         /// </summary>
 
-        internal bool IsStrongAssemblyTransaction
-        {
-            get { return mIsStrongAssemblyTransaction; }
-            set { mIsStrongAssemblyTransaction = value; }
-        }
+        internal bool IsStrongAssemblyTransaction { get; set; }
 
         /// <summary>
         /// Gets the PayflowNETAPI Client Version.
@@ -900,11 +888,7 @@ namespace PayPal.Payments.Communication
         /// Client information.
         /// </summary>
         [System.Runtime.InteropServices.ComVisible(false)]
-        public ClientInfo ClientInfo
-        {
-            get { return mClientInfo; }
-            set { mClientInfo = value; }
-        }
+        public ClientInfo ClientInfo { get; set; }
 
         #endregion
 
@@ -1074,21 +1058,21 @@ namespace PayPal.Payments.Communication
             mTransRqst = ParamList;
             mTransactionRequest = PayflowUtility.MaskSensitiveFields(ParamList);
 
-            if (mClientInfo == null)
+            if (ClientInfo == null)
             {
-                mClientInfo = new ClientInfo();
+                ClientInfo = new ClientInfo();
             }
 
-            mClientInfo.SetClientVersion(PayflowConstants.CLIENT_VERSION);
-            mClientInfo.SetClientType(PayflowConstants.CLIENT_TYPE);
+            ClientInfo.SetClientVersion(PayflowConstants.CLIENT_VERSION);
+            ClientInfo.SetClientType(PayflowConstants.CLIENT_TYPE);
 
             if (IsStrongAssemblyTransaction)
             {
-                mClientInfo.RequestType = PayflowConstants.STRONG_ASSEMBLY;
+                ClientInfo.RequestType = PayflowConstants.STRONG_ASSEMBLY;
             }
             else
             {
-                mClientInfo.RequestType = PayflowConstants.WEAK_ASSEMBLY;
+                ClientInfo.RequestType = PayflowConstants.WEAK_ASSEMBLY;
             }
             try
             {
@@ -1117,7 +1101,7 @@ namespace PayPal.Payments.Communication
                 mPaymentStateMachine = PaymentStateMachine.Instance;
 
 
-                mPaymentStateMachine.InitializeContext(mHostAddress, mHostPort, mTimeOut, mProxyAddress, mProxyPort, mProxyLogon, mProxyPassword, mClientInfo);
+                mPaymentStateMachine.InitializeContext(mHostAddress, mHostPort, mTimeOut, mProxyAddress, mProxyPort, mProxyLogon, mProxyPassword, ClientInfo);
 
                 //Initialize transaction
                 mPaymentStateMachine.InitTrans(ParamList, RequestId);
@@ -1153,7 +1137,7 @@ namespace PayPal.Payments.Communication
 
                 mTransactionResponse = mPaymentStateMachine.Response;
                 RetVal = mTransactionResponse;
-                mClientInfo = mPaymentStateMachine.ClientInfo;
+                ClientInfo = mPaymentStateMachine.ClientInfo;
                 //Assign the context data 
                 mRequestId = mPaymentStateMachine.RequestId;
                 mTransactionRequest = PayflowUtility.MaskSensitiveFields(ParamList);
@@ -1339,7 +1323,7 @@ namespace PayPal.Payments.Communication
                     }
                     else
                     {
-                        if (!mIsStrongAssemblyTransaction)
+                        if (!IsStrongAssemblyTransaction)
                         {
                             ParameterListValidator.Validate(ParamList, false, ref mTransactionContext);
                         }
@@ -1417,11 +1401,11 @@ namespace PayPal.Payments.Communication
         /// <param name="HeaderName">Header Name</param>
         private void RemoveHeader(String HeaderName)
         {
-            if (mClientInfo != null)
+            if (ClientInfo != null)
             {
-                if (mClientInfo.ClientInfoHash.ContainsKey(HeaderName))
+                if (ClientInfo.ClientInfoHash.ContainsKey(HeaderName))
                 {
-                    mClientInfo.ClientInfoHash.Remove(HeaderName);
+                    ClientInfo.ClientInfoHash.Remove(HeaderName);
                 }
 
             }
@@ -1433,12 +1417,12 @@ namespace PayPal.Payments.Communication
         /// <param name="HeaderValue">Header value</param>
         private void AddHeader(String HeaderName, String HeaderValue)
         {
-            if (mClientInfo == null)
+            if (ClientInfo == null)
             {
-                mClientInfo = new ClientInfo();
+                ClientInfo = new ClientInfo();
             }
 
-            mClientInfo.AddHeaderToHash(HeaderName, HeaderValue);
+            ClientInfo.AddHeaderToHash(HeaderName, HeaderValue);
 
         }
         #endregion

@@ -58,27 +58,21 @@ namespace PayPal.Payments.DataObjects
 	/// </example>
 	public sealed class LineItem : BaseRequestDataObject
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// line item amount
-		/// </summary>
-		private Currency mAmt;
+        /// <summary>
+        /// line item amount
+        /// </summary>
 
-		/// <summary>
-		/// line item cost
-		/// </summary>
-		private Currency mCost;
+        /// <summary>
+        /// line item cost
+        /// </summary>
+        private Currency mCost;
 
-		/// <summary>
-		/// line item freight amount
-		/// </summary>
-		private Currency mFreightAmt;
-
-		/// <summary>
-		/// line item tax amount
-		/// </summary>
-		private Currency mTaxAmt;
+        /// <summary>
+        /// line item tax amount
+        /// </summary>
+        private Currency mTaxAmt;
 
 		/// <summary>
 		/// line item uom
@@ -115,40 +109,25 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mDesc;
 
-		/// <summary>
-		/// line item discount
-		/// </summary>
-		private Currency mDiscount;
-
-		/// <summary>
-		/// line item manufacturer
-		/// </summary>
-		private String mManufacturer;
+        /// <summary>
+        /// line item manufacturer
+        /// </summary>
+        private String mManufacturer;
 
 		/// <summary>
 		/// line item prodcode
 		/// </summary>
 		private String mProdCode;
 
-		/// <summary>
-		/// line item qty
-		/// </summary>
-		private long mQty = PayflowConstants.INVALID_NUMBER;
+        /// <summary>
+        /// line item sku
+        /// </summary>
+        private String mSku;
 
-		/// <summary>
-		/// line item sku
-		/// </summary>
-		private String mSku;
-
-		/// <summary>
-		/// line item taxrate
-		/// </summary>
-		private Currency mTaxRate;
-
-		/// <summary>
-		/// line item tax type
-		/// </summary>
-		private String mTaxType;
+        /// <summary>
+        /// line item tax type
+        /// </summary>
+        private String mTaxType;
 
 		/// <summary>
 		/// line item type
@@ -180,15 +159,10 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mUpc;
 
-		/// <summary>
-		/// line item handlingamount
-		/// </summary>
-		private Currency mHandlingAmt;
-
-		/// <summary>
-		/// line item unspsc code
-		/// </summary>
-		private String mUnspscCode;
+        /// <summary>
+        /// line item unspsc code
+        /// </summary>
+        private String mUnspscCode;
 
 		/// <summary>
 		/// line item alternate tax amount
@@ -225,75 +199,67 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mItemNumber;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets, Sets line item Amt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Total line item amount including tax and 
-		///  discount. + for debit, - for credits. 
-		///  Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_AMTn</code>
-		/// </remarks>
-		public Currency Amt
-		{
-			get { return mAmt; }
-			set { mAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item Amt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Total line item amount including tax and 
+        ///  discount. + for debit, - for credits. 
+        ///  Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_AMTn</code>
+        /// </remarks>
+        public Currency Amt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets line item Cost.
-		/// </summary>
-		/// <remarks>
-		/// <para>Cost per item, excluding tax. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_COSTn</code>
-		/// </remarks>
-		public Currency Cost
+        /// <summary>
+        /// Gets, Sets line item Cost.
+        /// </summary>
+        /// <remarks>
+        /// <para>Cost per item, excluding tax. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_COSTn</code>
+        /// </remarks>
+        public Currency Cost
 		{
 			get { return mCost; }
 			set { mCost = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets line item FreightAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Freight Amount per item. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_FREIGHTAMTn</code>
-		/// </remarks>
-		public Currency FreightAmt
-		{
-			get { return mFreightAmt; }
-			set { mFreightAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item FreightAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Freight Amount per item. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_FREIGHTAMTn</code>
+        /// </remarks>
+        public Currency FreightAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets line item TaxAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Tax Amount per item. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_TAXAMTn</code>
-		/// </remarks>
-		public Currency TaxAmt
+        /// <summary>
+        /// Gets, Sets line item TaxAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Tax Amount per item. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_TAXAMTn</code>
+        /// </remarks>
+        public Currency TaxAmt
 		{
 			get { return mTaxAmt; }
 			set { mTaxAmt = value; }
@@ -397,32 +363,28 @@ namespace PayPal.Payments.DataObjects
 			set { mDesc = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets line item Discount.
-		/// </summary>
-		/// <remarks>
-		/// <para>Discount Amount per item. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_DISCOUNTn</code>
-		/// </remarks>
-		public Currency Discount
-		{
-			get { return mDiscount; }
-			set { mDiscount = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item Discount.
+        /// </summary>
+        /// <remarks>
+        /// <para>Discount Amount per item. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_DISCOUNTn</code>
+        /// </remarks>
+        public Currency Discount { get; set; }
 
-		/// <summary>
-		/// Gets, Sets line item Manufacturer.
-		/// </summary>
-		/// <remarks>
-		/// <para>Item manufacturer.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_MANUFACTURERn</code>
-		/// </remarks>
-		public String Manufacturer
+        /// <summary>
+        /// Gets, Sets line item Manufacturer.
+        /// </summary>
+        /// <remarks>
+        /// <para>Item manufacturer.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_MANUFACTURERn</code>
+        /// </remarks>
+        public String Manufacturer
 		{
 			get { return mManufacturer; }
 			set { mManufacturer = value; }
@@ -442,60 +404,52 @@ namespace PayPal.Payments.DataObjects
 			set { mProdCode = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets line item Qty.
-		/// </summary>
-		/// <remarks>
-		/// <para>Quantity per item.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_QTYn</code>
-		/// </remarks>
-		public long Qty
-		{
-			get { return mQty; }
-			set { mQty = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item Qty.
+        /// </summary>
+        /// <remarks>
+        /// <para>Quantity per item.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_QTYn</code>
+        /// </remarks>
+        public long Qty { get; set; } = PayflowConstants.INVALID_NUMBER;
 
-		/// <summary>
-		/// Gets, Sets line item SKU.
-		/// </summary>
-		/// <remarks>
-		/// <para>Item SKU.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_SKUn</code>
-		/// </remarks>
-		public String SKU
+        /// <summary>
+        /// Gets, Sets line item SKU.
+        /// </summary>
+        /// <remarks>
+        /// <para>Item SKU.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_SKUn</code>
+        /// </remarks>
+        public String SKU
 		{
 			get { return mSku; }
 			set { mSku = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets line item TaxRate.
-		/// </summary>
-		/// <remarks>
-		/// <para>Tax Rate Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_TAXRATEn</code>
-		/// </remarks>
-		public Currency TaxRate
-		{
-			get { return mTaxRate; }
-			set { mTaxRate = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item TaxRate.
+        /// </summary>
+        /// <remarks>
+        /// <para>Tax Rate Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_TAXRATEn</code>
+        /// </remarks>
+        public Currency TaxRate { get; set; }
 
-		/// <summary>
-		/// Gets, Sets line item TaxType.
-		/// </summary>
-		/// <remarks>
-		/// <para>Item tax type.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_TAXTYPEn</code>
-		/// </remarks>
-		public String TaxType
+        /// <summary>
+        /// Gets, Sets line item TaxType.
+        /// </summary>
+        /// <remarks>
+        /// <para>Item tax type.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_TAXTYPEn</code>
+        /// </remarks>
+        public String TaxType
 		{
 			get { return mTaxType; }
 			set { mTaxType = value; }
@@ -585,32 +539,28 @@ namespace PayPal.Payments.DataObjects
 			set { mUpc = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets line item HandlingAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Item Handling Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_HANDLINGAMTn</code>
-		/// </remarks>
-		public Currency HandlingAmt
-		{
-			get { return mHandlingAmt; }
-			set { mHandlingAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item HandlingAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Item Handling Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_HANDLINGAMTn</code>
+        /// </remarks>
+        public Currency HandlingAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets line item unspsc code.
-		/// </summary>
-		/// <remarks>
-		/// <para>Item UnspscCode.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>L_UNSPSCCODEn</code>
-		/// </remarks>
-		public String UnspscCode
+        /// <summary>
+        /// Gets, Sets line item unspsc code.
+        /// </summary>
+        /// <remarks>
+        /// <para>Item UnspscCode.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>L_UNSPSCCODEn</code>
+        /// </remarks>
+        public String UnspscCode
 		{
 			get { return mUnspscCode; }
 			set { mUnspscCode = value; }
@@ -805,10 +755,10 @@ namespace PayPal.Payments.DataObjects
 			{
 				String IndexVal = Index.ToString();
 
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_AMT + IndexVal, mAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_AMT + IndexVal, Amt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_COST + IndexVal, mCost));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_FREIGHTAMT + IndexVal, mFreightAmt));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_HANDLINGAMT + IndexVal, mHandlingAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_FREIGHTAMT + IndexVal, FreightAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_HANDLINGAMT + IndexVal, HandlingAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_TAXAMT + IndexVal, mTaxAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_UOM + IndexVal, mUom));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_PICKUPSTREET + IndexVal, mPickupStreet));
@@ -817,17 +767,17 @@ namespace PayPal.Payments.DataObjects
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_PICKUPCITY + IndexVal, mPickupCity));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_PICKUPZIP + IndexVal, mPickupZip));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_DESC + IndexVal, mDesc));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_DISCOUNT + IndexVal, mDiscount));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_DISCOUNT + IndexVal, Discount));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_MANUFACTURER + IndexVal, mManufacturer));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_PRODCODE + IndexVal, mProdCode));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_ITEMNUMBER + IndexVal, mItemNumber));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_NAME + IndexVal, mName));
-				if (mQty != PayflowConstants.INVALID_NUMBER)
+				if (Qty != PayflowConstants.INVALID_NUMBER)
 				{
-					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_QTY + IndexVal, mQty));
+					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_QTY + IndexVal, Qty));
 				}
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_SKU + IndexVal, mSku));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_TAXRATE + IndexVal, mTaxRate));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_TAXRATE + IndexVal, TaxRate));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_TAXTYPE + IndexVal, mTaxType));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_TYPE + IndexVal, mType));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_L_COMMCODE + IndexVal, mCommCode));

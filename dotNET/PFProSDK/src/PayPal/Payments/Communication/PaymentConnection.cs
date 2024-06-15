@@ -20,18 +20,17 @@ namespace PayPal.Payments.Communication
 	/// </summary>
 	internal class PaymentConnection
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Holds whether transaction is
-		/// with or without proxy.
-		/// </summary>
-		private bool mIsProxy;
+        /// <summary>
+        /// Holds whether transaction is
+        /// with or without proxy.
+        /// </summary>
 
-		/// <summary>
-		/// Payflow  Host Address
-		/// </summary>
-		private String mHostAddress;
+        /// <summary>
+        /// Payflow  Host Address
+        /// </summary>
+        private String mHostAddress;
 
 		/// <summary>
 		/// Payflow  Host Port
@@ -68,15 +67,10 @@ namespace PayPal.Payments.Communication
 		/// </summary>
 		private String mProxyPassword;
 
-		/// <summary>
-		/// Connection TimeOut Value.
-		/// </summary>
-        private long mConnectionTimeOut;
-
-		/// <summary>
-		/// Transaction start time.
-		/// </summary>
-		private long mStartTime;
+        /// <summary>
+        /// Transaction start time.
+        /// </summary>
+        private long mStartTime;
 
 		/// <summary>
 		/// Request Id
@@ -93,15 +87,10 @@ namespace PayPal.Payments.Communication
 		/// </summary>
 		private WebProxy mProxyInfo;
 
-		/// <summary>
-		/// Flag for XmlPay Request Type.
-		/// </summary>
-		private bool mIsXmlPayRequest;
-
-		/// <summary>
-		/// Context object.
-		/// </summary>
-		private Context mContext;
+        /// <summary>
+        /// Context object.
+        /// </summary>
+        private Context mContext;
 		/// <summary>
 		/// Client information.
 		/// </summary>
@@ -112,24 +101,21 @@ namespace PayPal.Payments.Communication
 		/// </summary>
 		private bool mProxyStatus = true;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets whether transaction
-		/// is with or without proxy.
-		/// </summary>
-		public bool IsProxy
-		{
-			get { return mIsProxy; }
-		}
+        /// <summary>
+        /// Gets whether transaction
+        /// is with or without proxy.
+        /// </summary>
+        public bool IsProxy { get; private set; }
 
-		/// <summary>
-		/// Gets, Sets the param list
-		/// content type.
-		/// </summary>
-		public String ContentType
+        /// <summary>
+        /// Gets, Sets the param list
+        /// content type.
+        /// </summary>
+        public String ContentType
 		{
 			get { return mContentType; }
 			set { mContentType = value; }
@@ -160,38 +146,30 @@ namespace PayPal.Payments.Communication
 			}
 		}
 
-		/// <summary>
-		/// Gets, Sets the timeout
-		/// value of transaction.
-		/// </summary>
-		public long TimeOut
-		{
-			get { return mConnectionTimeOut; }
-			set { mConnectionTimeOut = value; }
-		}
+        /// <summary>
+        /// Gets, Sets the timeout
+        /// value of transaction.
+        /// </summary>
+        public long TimeOut { get; set; }
 
-		/// <summary>
-		/// Gets the Connection
-		/// context object.
-		/// </summary>
-		internal Context ConnContext
+        /// <summary>
+        /// Gets the Connection
+        /// context object.
+        /// </summary>
+        internal Context ConnContext
 		{
 			get { return mContext; }
 		}
 
-		/// <summary>
-		/// Gets, Sets XmlPay Request type flag.
-		/// </summary>
-		public bool IsXmlPayRequest
-		{
-			get { return mIsXmlPayRequest; }
-			set { mIsXmlPayRequest = value; }
-		}
+        /// <summary>
+        /// Gets, Sets XmlPay Request type flag.
+        /// </summary>
+        public bool IsXmlPayRequest { get; set; }
 
-		/// <summary>
-		/// Client information.
-		/// </summary>
-		public ClientInfo ClientInfo
+        /// <summary>
+        /// Client information.
+        /// </summary>
+        public ClientInfo ClientInfo
 		{
 			get { return mClientInfo; }
 			set { mClientInfo = value; }
@@ -250,7 +228,7 @@ namespace PayPal.Payments.Communication
 			mHostPort = HostPort;
 			Logger.Instance.Log("PayPal.Payments.Communication.PaymentConnection.InitializeHost(String,int,int): HostPort = " + mHostPort.ToString(),
 				PayflowConstants.SEVERITY_INFO);
-			mConnectionTimeOut = TimeOut;
+            this.TimeOut = TimeOut;
 			Logger.Instance.Log("PayPal.Payments.Communication.PaymentConnection.InitializeHost(String,int,int): Exiting.",
 				PayflowConstants.SEVERITY_DEBUG);
 		}
@@ -273,7 +251,7 @@ namespace PayPal.Payments.Communication
 
 			if (mProxyAddress != null && mProxyAddress.Length > 0 && mProxyPort > 0)
 			{
-				mIsProxy = true;
+				IsProxy = true;
 			}
 
 			Logger.Instance.Log("PayPal.Payments.Communication.PaymentConnection.InitializeProxy(String,int,String, String): Exiting.",
@@ -356,7 +334,7 @@ namespace PayPal.Payments.Communication
 		{
 			Logger.Instance.Log("PayPal.Payments.Communication.PaymentConnection.InitProxyInfo(): Entered.",
 				PayflowConstants.SEVERITY_DEBUG);
-			if (mIsProxy)
+			if (IsProxy)
 			{
 				mProxyInfo = new WebProxy();
 				UriBuilder ProxyUriBuilder = new UriBuilder();
@@ -404,10 +382,10 @@ namespace PayPal.Payments.Communication
 				mServerConnection.KeepAlive = false;
 				mServerConnection.UserAgent = PayflowConstants.USER_AGENT;
 				mServerConnection.ContentType = mContentType;
-				mServerConnection.Timeout = (int) mConnectionTimeOut;
+                mServerConnection.Timeout = (int)this.TimeOut;
 				// Add request id in the header.
 				mServerConnection.Headers.Add(PayflowConstants.PAYFLOWHEADER_REQUEST_ID, mRequestId);
-				long TimeOut = mConnectionTimeOut/1000;
+				long TimeOut = this.TimeOut /1000;
 				mServerConnection.Headers.Add(PayflowConstants.PAYFLOWHEADER_TIMEOUT, TimeOut.ToString());
 
 				if (IsProxy)

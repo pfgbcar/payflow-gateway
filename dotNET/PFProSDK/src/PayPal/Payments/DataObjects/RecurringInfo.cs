@@ -127,40 +127,25 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mStart;
 
-		/// <summary>
-		/// Payment Term
-		/// </summary>
-		private long mTerm = PayflowConstants.INVALID_NUMBER;
-
-		/// <summary>
-		/// Payment Period
-		/// </summary>
-		private String mPayPeriod;
+        /// <summary>
+        /// Payment Period
+        /// </summary>
+        private String mPayPeriod;
 
 		/// <summary>
 		/// Optional transaction type
 		/// </summary>
 		private String mOptionalTrx;
 
-		/// <summary>
-		/// Optional transaction amount
-		/// </summary>
-		private Currency mOptionalTrxAmt;
+        /// <summary>
+        /// Retry number of days
+        /// </summary>
+        private long mRetryNumDays;
 
-		/// <summary>
-		/// Retry number of days
-		/// </summary>
-		private long mRetryNumDays;
-
-		/// <summary>
-		/// Max failed payments
-		/// </summary>
-		private long mMaxFailPayments = PayflowConstants.INVALID_NUMBER;
-
-		/// <summary>
-		/// Profile id of the original profile.
-		/// </summary>
-		private String mOrigProfileId;
+        /// <summary>
+        /// Profile id of the original profile.
+        /// </summary>
+        private String mOrigProfileId;
 
 		/// <summary>
 		/// Payment history
@@ -324,44 +309,40 @@ namespace PayPal.Payments.DataObjects
 			set { mStart = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets Term
-		/// </summary>
-		/// <remarks>
-		/// Number of payments to be made over the life of the agreement.
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>TERM</code>
-		/// </remarks>
-		public long Term
-		{
-			get { return mTerm; }
-			set { mTerm = value; }
-		}
+        /// <summary>
+        /// Gets, Sets Term
+        /// </summary>
+        /// <remarks>
+        /// Number of payments to be made over the life of the agreement.
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>TERM</code>
+        /// </remarks>
+        public long Term { get; set; } = PayflowConstants.INVALID_NUMBER;
 
-		/// <summary>
-		/// Gets, Sets PayPeriod
-		/// </summary>
-		/// <remarks>
-		/// Specifies how often the payment occurs.
-		/// <para>Allowed PayPeriods are:</para>
-		/// <list type="table">
-		/// <listheader>
-		/// <term>Value</term>
-		/// <description>Description</description>
-		/// </listheader>
-		/// <item><term>WEEK</term><description>Weekly - Every week on the same day of the week as the first payment.</description></item>
-		/// <item><term>BIWK</term><description>Every Two Weeks - Every other week on the same day of the week as the first payment.</description></item>
-		/// <item><term>SMMO</term><description>Twice Every Month - The 1st and 15th of the month.Results in 24 payments per year. SMMO can start on 1st to 15th of the month, second payment 15 days later or on the last day of the month.</description></item>
-		/// <item><term>FRWK</term><description>Every Four Weeks - Every 28 days from the previous payment date beginning with the first payment date. Results in 13 payments per year.</description></item>
-		/// <item><term>MONT</term><description>Monthly - Every month on the same date as the first payment. Results in 12 payments per year.</description></item>
-		/// <item><term>QTER</term><description>Quarterly - Every three months on the same date as the first payment.</description></item>
-		/// <item><term>SMYR</term><description>Twice Every Year - Every six months on the same date as the first payment.</description></item>
-		/// <item><term>YEAR</term><description>Yearly - Every twelve months on the same date as the first payment.</description></item>
-		///</list>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>PAYPERIOD</code>
-		/// </remarks>
-		public String PayPeriod
+        /// <summary>
+        /// Gets, Sets PayPeriod
+        /// </summary>
+        /// <remarks>
+        /// Specifies how often the payment occurs.
+        /// <para>Allowed PayPeriods are:</para>
+        /// <list type="table">
+        /// <listheader>
+        /// <term>Value</term>
+        /// <description>Description</description>
+        /// </listheader>
+        /// <item><term>WEEK</term><description>Weekly - Every week on the same day of the week as the first payment.</description></item>
+        /// <item><term>BIWK</term><description>Every Two Weeks - Every other week on the same day of the week as the first payment.</description></item>
+        /// <item><term>SMMO</term><description>Twice Every Month - The 1st and 15th of the month.Results in 24 payments per year. SMMO can start on 1st to 15th of the month, second payment 15 days later or on the last day of the month.</description></item>
+        /// <item><term>FRWK</term><description>Every Four Weeks - Every 28 days from the previous payment date beginning with the first payment date. Results in 13 payments per year.</description></item>
+        /// <item><term>MONT</term><description>Monthly - Every month on the same date as the first payment. Results in 12 payments per year.</description></item>
+        /// <item><term>QTER</term><description>Quarterly - Every three months on the same date as the first payment.</description></item>
+        /// <item><term>SMYR</term><description>Twice Every Year - Every six months on the same date as the first payment.</description></item>
+        /// <item><term>YEAR</term><description>Yearly - Every twelve months on the same date as the first payment.</description></item>
+        ///</list>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>PAYPERIOD</code>
+        /// </remarks>
+        public String PayPeriod
 		{
 			get { return mPayPeriod; }
 			set { mPayPeriod = value; }
@@ -386,63 +367,55 @@ namespace PayPal.Payments.DataObjects
 			set { mOptionalTrx = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets OptionalTrxAmt
-		/// </summary>
-		/// <remarks>
-		/// Amount of the Optional Transaction. Required only when OPTIONALTRX=S.
-		/// Optional when OPTIONALTRX=A ($1 Authorization by default)
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>OPTIONALTRXAMT</code>
-		/// </remarks>
-		public Currency OptionalTrxAmt
-		{
-			get { return mOptionalTrxAmt; }
-			set { mOptionalTrxAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets OptionalTrxAmt
+        /// </summary>
+        /// <remarks>
+        /// Amount of the Optional Transaction. Required only when OPTIONALTRX=S.
+        /// Optional when OPTIONALTRX=A ($1 Authorization by default)
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>OPTIONALTRXAMT</code>
+        /// </remarks>
+        public Currency OptionalTrxAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets RetryNumDays
-		/// </summary>
-		/// <remarks>
-		/// The number of consecutive days that Gateway should
-		/// attempt to process a failed transaction until Approved
-		/// status is received.
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>RETRYNUMDAYS</code>
-		/// </remarks>
-		public long RetryNumDays
+        /// <summary>
+        /// Gets, Sets RetryNumDays
+        /// </summary>
+        /// <remarks>
+        /// The number of consecutive days that Gateway should
+        /// attempt to process a failed transaction until Approved
+        /// status is received.
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>RETRYNUMDAYS</code>
+        /// </remarks>
+        public long RetryNumDays
 		{
 			get { return mRetryNumDays; }
 			set { mRetryNumDays = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets MaxFailPayments
-		/// </summary>
-		/// <remarks>
-		/// The number of payment periods (specified by
-		/// PAYPERIOD) for which the transaction is allowed to fail
-		/// before PayPal cancels a profile.
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>MAXFAILPAYMENTS</code>
-		/// </remarks>
-		public long MaxFailPayments
-		{
-			get { return mMaxFailPayments; }
-			set { mMaxFailPayments = value; }
-		}
+        /// <summary>
+        /// Gets, Sets MaxFailPayments
+        /// </summary>
+        /// <remarks>
+        /// The number of payment periods (specified by
+        /// PAYPERIOD) for which the transaction is allowed to fail
+        /// before PayPal cancels a profile.
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>MAXFAILPAYMENTS</code>
+        /// </remarks>
+        public long MaxFailPayments { get; set; } = PayflowConstants.INVALID_NUMBER;
 
-		/// <summary>
-		/// Gets, Sets OrigProfileId
-		/// </summary>
-		/// <remarks>Required for Modify/Cancel/Inquiry/Retry action.
-		/// Profile IDs for test profiles start with RT.
-		/// Profile IDs for live profiles start with RP.
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>ORIGPROFILEID</code>
-		/// </remarks>
-		public String OrigProfileId
+        /// <summary>
+        /// Gets, Sets OrigProfileId
+        /// </summary>
+        /// <remarks>Required for Modify/Cancel/Inquiry/Retry action.
+        /// Profile IDs for test profiles start with RT.
+        /// Profile IDs for live profiles start with RP.
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>ORIGPROFILEID</code>
+        /// </remarks>
+        public String OrigProfileId
 		{
 			get { return mOrigProfileId; }
 			set { mOrigProfileId = value; }
@@ -459,7 +432,7 @@ namespace PayPal.Payments.DataObjects
 		/// <description>Description</description>
 		/// </listheader>
 		/// <item><term>Y</term><description>To view the full set of payment information for a profile, include the name/value pair with the Inquiry action.</description></item>
-		/// <item><term>N</term><description>To view the status of a customer’s profile, submit an Inquiry action that does not include the PAYMENTHISTORY parameter (alternatively, submit PAYMENTHISTORY=N).</description></item>
+		/// <item><term>N</term><description>To view the status of a customerï¿½s profile, submit an Inquiry action that does not include the PAYMENTHISTORY parameter (alternatively, submit PAYMENTHISTORY=N).</description></item>
 		///</list>
 		/// <para>Maps to Payflow Parameter:</para>
 		/// <code>PAYMENTHISTORY</code>
@@ -512,18 +485,18 @@ namespace PayPal.Payments.DataObjects
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PROFILENAME, mProfileName));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_START, mStart));
 
-				if (mTerm != PayflowConstants.INVALID_NUMBER)
+				if (Term != PayflowConstants.INVALID_NUMBER)
 				{
-					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_TERM, mTerm));
+					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_TERM, Term));
 				}
 
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PAYPERIOD, mPayPeriod));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_OPTIONALTRX, mOptionalTrx));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_OPTIONALTRXAMT, mOptionalTrxAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_OPTIONALTRXAMT, OptionalTrxAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_RETRYNUMDAYS, mRetryNumDays));
-				if (mMaxFailPayments != PayflowConstants.INVALID_NUMBER)
+				if (MaxFailPayments != PayflowConstants.INVALID_NUMBER)
 				{
-					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_MAXFAILPAYMENTS, mMaxFailPayments));
+					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_MAXFAILPAYMENTS, MaxFailPayments));
 				}
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGPROFILEID, mOrigProfileId));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PAYMENTHISTORY, mPaymentHistory));

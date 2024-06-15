@@ -18,7 +18,7 @@ public class DOFraudReview {
 		// For testing: pilot-payflowpro.paypal.com
 		// For production: payflowpro.paypal.com
 		// DO NOT use payflow.verisign.com or test-payflow.verisign.com!
-		SDKProperties.setHostAddress("pilot-payflowpro.paypal.com");
+		SDKProperties.setHostAddress("payflowpro.paypal.com");
 		SDKProperties.setHostPort(443);
 		SDKProperties.setTimeOut(45);
 
@@ -29,12 +29,12 @@ public class DOFraudReview {
 
 		// Uncomment the lines below and set the proxy address and port, if a proxy has
 		// to be used.
-		// SDKProperties.setProxyAddress("");
-		// SDKProperties.setProxyPort(0);
+		// SDKProperties.setProxyAddress("payflowpro.paypal.com");
+		// SDKProperties.setProxyPort(443);
 
 		// Create the Data Objects.
 		// Create the user data object with the required user details.
-		UserInfo user = new UserInfo("<user>", "<vendor>", "<partner>", "<password>");
+		UserInfo user = new UserInfo("Supreme", "Lordlawy11", "Paypal", "Supremeone1$");
 
 		// Create the Payflow Connection data object with the required connection
 		// details.

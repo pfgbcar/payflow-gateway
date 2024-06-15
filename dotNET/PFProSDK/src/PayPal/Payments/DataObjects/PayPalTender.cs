@@ -20,56 +20,49 @@ namespace PayPal.Payments.DataObjects
 	/// </remarks>
 	public class PayPalTender : BaseTender
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		private ExpressCheckoutRequest mExpressCheckoutRequest = null;
+        #endregion
+
+        #region "Properties"		
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ExpressCheckoutRequest ExpressCheckoutRequest { get; set; } = null;
+        #endregion
+
+        #region "Constructor"	
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="CreditCard">Credit Card object</param>
+        /// <remarks>This constructor is used to create a PayPalTender
+        ///  with CreditCard as the payment device</remarks>
+        ///  <example>
+        ///  <code lang="C#" escaped="false">
+        ///		.............
+        ///		//CredCard is the CreditCard object.
+        ///		.............
+        ///		
+        ///		PayPalTender Tender = new PayPalTender(CredCard);
+        ///		
+        ///		..............
+        ///  </code>
+        ///  <code lang="C#" escaped="false">
+        ///		.............
+        ///		'CredCard is the CreditCard object.
+        ///		.............
+        ///		
+        ///		Dim Tender As PayPalTender = new PayPalTender(CredCard)
+        ///		
+        ///		..............
+        ///  </code>
+        ///  </example>
+        /// <seealso cref="CreditCard"/>
 
 
-		#endregion
-
-		#region "Properties"		
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public ExpressCheckoutRequest ExpressCheckoutRequest 
-		{
-			get {return mExpressCheckoutRequest ;}
-			set {mExpressCheckoutRequest = value;}
-		}
-		#endregion
-
-		#region "Constructor"	
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		/// <param name="CreditCard">Credit Card object</param>
-		/// <remarks>This constructor is used to create a PayPalTender
-		///  with CreditCard as the payment device</remarks>
-		///  <example>
-		///  <code lang="C#" escaped="false">
-		///		.............
-		///		//CredCard is the CreditCard object.
-		///		.............
-		///		
-		///		PayPalTender Tender = new PayPalTender(CredCard);
-		///		
-		///		..............
-		///  </code>
-		///  <code lang="C#" escaped="false">
-		///		.............
-		///		'CredCard is the CreditCard object.
-		///		.............
-		///		
-		///		Dim Tender As PayPalTender = new PayPalTender(CredCard)
-		///		
-		///		..............
-		///  </code>
-		///  </example>
-		/// <seealso cref="CreditCard"/>
-
-		
-		public PayPalTender(CreditCard CreditCard) : base( "P", CreditCard)
+        public PayPalTender(CreditCard CreditCard) : base( "P", CreditCard)
 		{
 
 		}
@@ -106,7 +99,7 @@ namespace PayPal.Payments.DataObjects
 		/// <seealso cref="ECDoRequest"/>
 		public PayPalTender(ExpressCheckoutRequest ECReq) : base(PayflowConstants.TENDERTYPE_PAYPAL, null)
 		{
-			mExpressCheckoutRequest = ECReq;
+			ExpressCheckoutRequest = ECReq;
 		}
 
 		#endregion
@@ -116,10 +109,10 @@ namespace PayPal.Payments.DataObjects
 		internal override void GenerateRequest()
 		{
 			base.GenerateRequest ();
-			if (mExpressCheckoutRequest != null)
+			if (ExpressCheckoutRequest != null)
 			{
-				mExpressCheckoutRequest.RequestBuffer = RequestBuffer ;
-				mExpressCheckoutRequest.GenerateRequest ();
+				ExpressCheckoutRequest.RequestBuffer = RequestBuffer ;
+				ExpressCheckoutRequest.GenerateRequest ();
 			}
 		}
 		#endregion

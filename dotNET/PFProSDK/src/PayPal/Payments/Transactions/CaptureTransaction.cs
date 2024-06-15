@@ -81,41 +81,36 @@ namespace PayPal.Payments.Transactions
 	///	</example>
 	public sealed class CaptureTransaction : ReferenceTransaction
 	{
-		#region "Member variables"
-		/// <summary>
-		/// Capture Complete. Y or N.
-		/// </summary>
-		private String mCaptureComplete;
-		#endregion
+        #region "Member variables"
+        /// <summary>
+        /// Capture Complete. Y or N.
+        /// </summary>
+        #endregion
 
-		#region "Properties"
-		/// <summary>
-		/// Gets, Sets  CaptureComplete.
-		/// </summary>
-		/// <remarks>
-		/// <para>UK Only: Used with Delay Capture transaction
-		///  to indicate this is the last capture you intend
-		///  to make. 
-		///  Values are : Y (default) N
-		///  If CaptureComplete is Y, any remaining amount of the
-		///  original reauthorized transaction is voided.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>CAPTURECOMPLETE</code>
-		/// </remarks>
-		public String CaptureComplete
-		{
-			get { return mCaptureComplete; }
-			set { mCaptureComplete = value; }
-		}
-		#endregion
-		
-		#region "Constructors"
+        #region "Properties"
+        /// <summary>
+        /// Gets, Sets  CaptureComplete.
+        /// </summary>
+        /// <remarks>
+        /// <para>UK Only: Used with Delay Capture transaction
+        ///  to indicate this is the last capture you intend
+        ///  to make. 
+        ///  Values are : Y (default) N
+        ///  If CaptureComplete is Y, any remaining amount of the
+        ///  original reauthorized transaction is voided.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>CAPTURECOMPLETE</code>
+        /// </remarks>
+        public String CaptureComplete { get; set; }
+        #endregion
 
-		/// <summary>
-		/// Private Constructor. This prevents
-		/// creation of an empty Transaction object. 
-		/// </summary>
-		private CaptureTransaction()
+        #region "Constructors"
+
+        /// <summary>
+        /// Private Constructor. This prevents
+        /// creation of an empty Transaction object. 
+        /// </summary>
+        private CaptureTransaction()
 		{
 		}
 
@@ -617,7 +612,7 @@ namespace PayPal.Payments.Transactions
 			try
 			{
 				base.GenerateRequest ();
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CAPTURECOMPLETE,mCaptureComplete));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CAPTURECOMPLETE,CaptureComplete));
 			
 			}
 			catch (BaseException)

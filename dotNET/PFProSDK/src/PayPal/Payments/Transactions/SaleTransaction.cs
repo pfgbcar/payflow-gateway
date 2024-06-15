@@ -117,20 +117,19 @@ namespace PayPal.Payments.Transactions
 	/// </example>
 	public sealed class SaleTransaction : BaseTransaction
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Original transaction id.
-		/// The ORIGID is the PNREF no. for a previous transaction.
-		/// OrigId is used in case Authorization transaction is a Follow-On transaction.
-		/// </summary>
-		private String mOrigId;
+        /// <summary>
+        /// Original transaction id.
+        /// The ORIGID is the PNREF no. for a previous transaction.
+        /// OrigId is used in case Authorization transaction is a Follow-On transaction.
+        /// </summary>
 
-		/// <summary>
-		/// Secure token request.
-		/// Used to store sensitive data prior to making a call to the hosted page.
-		/// </summary>
-		private String mCreateSecureToken;
+        /// <summary>
+        /// Secure token request.
+        /// Used to store sensitive data prior to making a call to the hosted page.
+        /// </summary>
+        private String mCreateSecureToken;
 
 		/// <summary>
 		/// Secure token id.
@@ -139,139 +138,135 @@ namespace PayPal.Payments.Transactions
 		/// </summary>
 		private String mSecureTokenId;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets, Sets OrigId. This property is used to perform a 
-		/// reference Sale Transaction.
-		/// </summary>
-		/// <remarks>A reference Sale transaction is a sale transaction which copies the transaction data,
-		///  except the Account Number, Expiration Date and Swipe data from a previous transaction.
-		///  PNRef of this previous transaction needs to be set in this OrigId property.</remarks>
-		/// <remarks>A successful Sale needs to be captured using a capture transaction.</remarks>
-		/// <example>This example shows how to create and perform a reference sale transaction.
-		/// <code lang="C#" escaped="false">
-		///		..........
-		///		..........
-		///		//Populate required data objects.
-		///		..........
-		///		..........
-		///				
-		/// 	//Create a new Sale Transaction
-		/// 	SaleTransaction Trans = new SaleTransaction(
-		///													UserInfo,
-		///													PayflowConnectionData,
-		///													Invoice,
-		///													Tender, 
-		///													RequestId);
-		///													
-		///		// Set the OrigId to refer to a previous transaction.
-		///		Trans.OrigId = "V64A0A07BD24";		
-		///	
-		///		//Submit the transaction.
-		///		Trans.SubmitTransaction();
-		///			
-		///		// Get the Response.
-		///		Response Resp = Trans.Response;
-		///		if (Resp != null)
-		///		{
-		///			// Get the Transaction Response parameters.
-		///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-		///			if (TrxnResponse != null)
-		///			{
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-		///			}
-		///			// Get the Fraud Response parameters.
-		///			FraudResponse FraudResp =  Resp.FraudResponse;
-		///			if (FraudResp != null)
-		///			{
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-		///			}
-		///		}
-		///		// Get the Context and check for any contained SDK specific errors.
-		///		Context Ctx = Resp.TransactionContext;
-		///		if (Ctx != null &amp;&amp; Ctx.getErrorCount() > 0)
-		///		{
-		///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-		///		}	
-		///</code>
-		///<code lang="Visual Basic" escaped="false">
-		///		..........
-		///		..........
-		///		'Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		'Create a new Sale Transaction
-		///		Dim Trans as New SaleTransaction(
-		///										UserInfo,
-		///										PayflowConnectionData,
-		///										Invoice,
-		///										Tender, 
-		///										RequestId)
-		///										
-		///										
-		///		' Set the OrigId to refer to a previous transaction.
-		///		Trans.OrigId = "V64A0A07BD24"
-		///		
-		///		' Submit the transaction.
-		///		Trans.SubmitTransaction()
-		///
-		///		' Get the Response.
-		///		Dim Resp As Response = Trans.Response
-		///		
-		///		If Not Resp Is Nothing Then
-		///		' Get the Transaction Response parameters.
-		///		
-		///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-		///			
-		///			If Not TrxnResponse Is Nothing Then
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-		///			End If
-		///
-		///			' Get the Fraud Response parameters.
-		///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-		///			If Not FraudResp Is Nothing Then
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-		///			End If
-		///		End If
-		///
-		///		' Get the Context and check for any contained SDK specific errors.
-		///		Dim Ctx As Context = Resp.TransactionContext
-		///		
-		///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-		///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-		///		End If												
-		/// </code>
-		/// </example>
-		public String OrigId
-		{
-			get { return mOrigId; }
-			set { mOrigId = value; }
-        }
+        /// <summary>
+        /// Gets, Sets OrigId. This property is used to perform a 
+        /// reference Sale Transaction.
+        /// </summary>
+        /// <remarks>A reference Sale transaction is a sale transaction which copies the transaction data,
+        ///  except the Account Number, Expiration Date and Swipe data from a previous transaction.
+        ///  PNRef of this previous transaction needs to be set in this OrigId property.</remarks>
+        /// <remarks>A successful Sale needs to be captured using a capture transaction.</remarks>
+        /// <example>This example shows how to create and perform a reference sale transaction.
+        /// <code lang="C#" escaped="false">
+        ///		..........
+        ///		..........
+        ///		//Populate required data objects.
+        ///		..........
+        ///		..........
+        ///				
+        /// 	//Create a new Sale Transaction
+        /// 	SaleTransaction Trans = new SaleTransaction(
+        ///													UserInfo,
+        ///													PayflowConnectionData,
+        ///													Invoice,
+        ///													Tender, 
+        ///													RequestId);
+        ///													
+        ///		// Set the OrigId to refer to a previous transaction.
+        ///		Trans.OrigId = "V64A0A07BD24";		
+        ///	
+        ///		//Submit the transaction.
+        ///		Trans.SubmitTransaction();
+        ///			
+        ///		// Get the Response.
+        ///		Response Resp = Trans.Response;
+        ///		if (Resp != null)
+        ///		{
+        ///			// Get the Transaction Response parameters.
+        ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+        ///			if (TrxnResponse != null)
+        ///			{
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+        ///			}
+        ///			// Get the Fraud Response parameters.
+        ///			FraudResponse FraudResp =  Resp.FraudResponse;
+        ///			if (FraudResp != null)
+        ///			{
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+        ///			}
+        ///		}
+        ///		// Get the Context and check for any contained SDK specific errors.
+        ///		Context Ctx = Resp.TransactionContext;
+        ///		if (Ctx != null &amp;&amp; Ctx.getErrorCount() > 0)
+        ///		{
+        ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+        ///		}	
+        ///</code>
+        ///<code lang="Visual Basic" escaped="false">
+        ///		..........
+        ///		..........
+        ///		'Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		'Create a new Sale Transaction
+        ///		Dim Trans as New SaleTransaction(
+        ///										UserInfo,
+        ///										PayflowConnectionData,
+        ///										Invoice,
+        ///										Tender, 
+        ///										RequestId)
+        ///										
+        ///										
+        ///		' Set the OrigId to refer to a previous transaction.
+        ///		Trans.OrigId = "V64A0A07BD24"
+        ///		
+        ///		' Submit the transaction.
+        ///		Trans.SubmitTransaction()
+        ///
+        ///		' Get the Response.
+        ///		Dim Resp As Response = Trans.Response
+        ///		
+        ///		If Not Resp Is Nothing Then
+        ///		' Get the Transaction Response parameters.
+        ///		
+        ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+        ///			
+        ///			If Not TrxnResponse Is Nothing Then
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+        ///			End If
+        ///
+        ///			' Get the Fraud Response parameters.
+        ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+        ///			If Not FraudResp Is Nothing Then
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+        ///			End If
+        ///		End If
+        ///
+        ///		' Get the Context and check for any contained SDK specific errors.
+        ///		Dim Ctx As Context = Resp.TransactionContext
+        ///		
+        ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+        ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+        ///		End If												
+        /// </code>
+        /// </example>
+        public String OrigId { get; set; }
 
         #endregion
 
         #region "Properties"
 
         /// <remarks>Use a secure token to send non-credit card transaction data to the Payflow server for storage in
-        /// a way that can’t be intercepted and manipulated maliciously.The secure token must be used with the hosted 
+        /// a way that canï¿½t be intercepted and manipulated maliciously.The secure token must be used with the hosted 
         /// checkout pages. The token is good for a one-time transaction and is valid for 30 minutes.
         /// 
         /// NOTE: Without using a secure token, Payflow Pro merchants can host their own payment page and Payflow Link merchants 
@@ -395,7 +390,7 @@ namespace PayPal.Payments.Transactions
         /// </example>
         /// </remarks>
 
-        
+
         /// <summary>
         /// Gets, Sets CreateSecureToken. This property is used to create a Secure Token.
         /// </summary>
@@ -673,7 +668,7 @@ namespace PayPal.Payments.Transactions
 			try
 			{
 				base.GenerateRequest();
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGID, mOrigId));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGID, OrigId));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CREATESECURETOKEN, mCreateSecureToken));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_SECURETOKENID, mSecureTokenId));
 			}

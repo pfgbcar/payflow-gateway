@@ -30,19 +30,14 @@ namespace PayPal.Payments.Common
 		/// </summary>
 		private int mHighestErrorLvl;
 
-		/// <summary>
-		/// Indicates if the Error messages due to Logger class needs to be added to the context.
-		/// </summary>
-		private  bool mLoadLoggerErrs ;
-		
-		#endregion
+        #endregion
 
-		#region "Constructor"
+        #region "Constructor"
 
-		/// <summary>
-		/// Constructor for Context
-		/// </summary>
-		internal Context()
+        /// <summary>
+        /// Constructor for Context
+        /// </summary>
+        internal Context()
 		{
 		}
 
@@ -75,35 +70,25 @@ namespace PayPal.Payments.Common
 			}
 		}
 
-		/// <summary>
-		/// Indicates if the Error messages due to Logger class needs to be added to the context.
-		/// </summary>
-		public bool LoadLoggerErrs
-		{
-			get
-			{
-				return mLoadLoggerErrs ;
-			}
-			set
-			{
-				mLoadLoggerErrs = value;
-			}
-		}
-		#endregion
+        /// <summary>
+        /// Indicates if the Error messages due to Logger class needs to be added to the context.
+        /// </summary>
+        public bool LoadLoggerErrs { get; set; }
+        #endregion
 
-		#region "Methods"
+        #region "Methods"
 
-		/// -----------------------------------------------------------------------------
-		/// <summary>
-		/// This method adds the passed error object in the array list contained by 
-		/// the context object
-		/// </summary>
-		/// <param name="ErrObject">ErrorObject</param>
-		/// <returns>Nothing</returns>
-		/// <remarks>
-		/// </remarks>
-		/// -----------------------------------------------------------------------------
-		internal void AddError(ErrorObject ErrObject)
+        /// -----------------------------------------------------------------------------
+        /// <summary>
+        /// This method adds the passed error object in the array list contained by 
+        /// the context object
+        /// </summary>
+        /// <param name="ErrObject">ErrorObject</param>
+        /// <returns>Nothing</returns>
+        /// <remarks>
+        /// </remarks>
+        /// -----------------------------------------------------------------------------
+        internal void AddError(ErrorObject ErrObject)
 		{
 			if (mErrorObjects == null)
 			{

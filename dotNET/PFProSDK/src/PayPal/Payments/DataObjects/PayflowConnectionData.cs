@@ -48,25 +48,15 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mHostAddress;
 
-		/// <summary>
-		/// Payflow Host port
-		/// </summary>
-		private int mHostPort;
+        /// <summary>
+        /// Proxy Address
+        /// </summary>
+        private String mProxyAddress;
 
-		/// <summary>
-		/// Proxy Address
-		/// </summary>
-		private String mProxyAddress;
-
-		/// <summary>
-		/// Proxy Port
-		/// </summary>
-		private int mProxyPort;
-
-		/// <summary>
-		/// Proxy Logon Id
-		/// </summary>
-		private String mProxyLogon;
+        /// <summary>
+        /// Proxy Logon Id
+        /// </summary>
+        private String mProxyLogon;
 
 		/// <summary>
 		/// Proxy Password
@@ -91,22 +81,19 @@ namespace PayPal.Payments.DataObjects
 			get { return mHostAddress; }
 		}
 
-		/// <summary>
-		/// Gets HostPort. Use port 443
-		/// </summary>
-		/// <remarks>Read-only property.</remarks>
-		public int HostPort
-		{
-			get { return mHostPort; }
-		}
+        /// <summary>
+        /// Gets HostPort. Use port 443
+        /// </summary>
+        /// <remarks>Read-only property.</remarks>
+        public int HostPort { get; }
 
-		/// <summary>
-		/// Gets Time-out period for the transaction. The minimum recommended
-		/// time-out value is 30 seconds. The client begins tracking
-		/// from the time that it sends the transaction request to the server.
-		/// </summary>
-		/// <remarks>Read-only property.</remarks>
-		public int TimeOut
+        /// <summary>
+        /// Gets Time-out period for the transaction. The minimum recommended
+        /// time-out value is 30 seconds. The client begins tracking
+        /// from the time that it sends the transaction request to the server.
+        /// </summary>
+        /// <remarks>Read-only property.</remarks>
+        public int TimeOut
 		{
 			get { return mTimeOut; }
 		}
@@ -122,20 +109,17 @@ namespace PayPal.Payments.DataObjects
 			get { return mProxyAddress; }
 		}
 
-		/// <summary>
-		/// Gets ProxyPort
-		/// </summary>
-		/// <remarks>Read-only property.</remarks>
-		public int ProxyPort
-		{
-			get { return mProxyPort; }
-		}
+        /// <summary>
+        /// Gets ProxyPort
+        /// </summary>
+        /// <remarks>Read-only property.</remarks>
+        public int ProxyPort { get; }
 
-		/// <summary>
-		/// Gets ProxyLogon
-		/// </summary>
-		/// <remarks>Read-only property.</remarks>
-		public String ProxyLogon
+        /// <summary>
+        /// Gets ProxyLogon
+        /// </summary>
+        /// <remarks>Read-only property.</remarks>
+        public String ProxyLogon
 		{
 			get { return mProxyLogon; }
 		}
@@ -300,10 +284,10 @@ namespace PayPal.Payments.DataObjects
 			}
 
 			mHostAddress = HostAddress;
-			mHostPort = HostPort;
+            this.HostPort = HostPort;
 			mTimeOut = TimeOut;
 			mProxyAddress = ProxyAddress;
-			mProxyPort = ProxyPort;
+            this.ProxyPort = ProxyPort;
 			mProxyLogon = ProxyLogon;
 			mProxyPassword = ProxyPassword;
 			InitDefaultValues();

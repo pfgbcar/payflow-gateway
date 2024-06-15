@@ -13,17 +13,16 @@ namespace PayPal.Payments.DataObjects
 	/// <remarks>These are the fraud rules applied for the transaction.</remarks>
 	public class Rule : BaseResponseDataObject
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Number
-		/// </summary>
-		private int mNum;
+        /// <summary>
+        /// Number
+        /// </summary>
 
-		/// <summary>
-		/// Rule id
-		/// </summary>
-		private String mRuleId;
+        /// <summary>
+        /// Rule id
+        /// </summary>
+        private String mRuleId;
 
 		/// <summary>
 		/// rule alias
@@ -50,25 +49,21 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private ArrayList mRuleVendorParms;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets, Sets Num
-		/// </summary>
-		/// <remarks>This is the fraud rule number.</remarks>
-		public int Num
-		{
-			get { return mNum; }
-			set { mNum = value; }
-		}
+        /// <summary>
+        /// Gets, Sets Num
+        /// </summary>
+        /// <remarks>This is the fraud rule number.</remarks>
+        public int Num { get; set; }
 
-		/// <summary>
-		/// Gets, Sets RuleId
-		/// </summary>
-		/// <remarks>This is the fraud rule id.</remarks>
-		public String RuleId
+        /// <summary>
+        /// Gets, Sets RuleId
+        /// </summary>
+        /// <remarks>This is the fraud rule id.</remarks>
+        public String RuleId
 		{
 			get { return mRuleId; }
 			set { mRuleId = value; }

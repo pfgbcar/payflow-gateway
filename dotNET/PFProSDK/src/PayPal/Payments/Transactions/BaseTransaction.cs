@@ -287,15 +287,11 @@ namespace PayPal.Payments.Transactions
 		/// </summary>
 		private StringBuilder mRequestBuffer;
 
-		/// <summary>
-		/// Client Header Information
-		/// </summary>
-		private ClientInfo mClientInfo;
-		/// <summary>
-		/// Transaction BuyerAuthStatus object. Has parameters like Authentication_ID, AuthenticatonStatus, CAVV,XID etc.
-		/// <seealso cref="BuyerAuthStatus"/>
-		/// </summary>
-		private BuyerAuthStatus mBuyerAuthStatus;
+        /// <summary>
+        /// Transaction BuyerAuthStatus object. Has parameters like Authentication_ID, AuthenticatonStatus, CAVV,XID etc.
+        /// <seealso cref="BuyerAuthStatus"/>
+        /// </summary>
+        private BuyerAuthStatus mBuyerAuthStatus;
 		
 		#endregion
 
@@ -603,18 +599,14 @@ namespace PayPal.Payments.Transactions
 			set { mRequestId = value; }
 		}
 
-		/// <summary>
-		/// Gets , sets Client Information object.
-		/// </summary>
-		public ClientInfo ClientInfo
-		{
-			get { return mClientInfo; }
-			set { mClientInfo = value; }
-		}
+        /// <summary>
+        /// Gets , sets Client Information object.
+        /// </summary>
+        public ClientInfo ClientInfo { get; set; }
 
-		/// <summary>
+        /// <summary>
         /// Gets, sets BuyerAuthStatus object.
-		/// </summary>
+        /// </summary>
         public BuyerAuthStatus BuyerAuthStatus
 		{
 			get {return mBuyerAuthStatus;}
@@ -857,9 +849,9 @@ namespace PayPal.Payments.Transactions
 			Logger.Instance.Log("PayPal.Payments.Transactions.BaseTransaction.SubmitTransaction(): Entered", PayflowConstants.SEVERITY_DEBUG);
 			try
 			{
-				if(mClientInfo == null)
+				if(ClientInfo == null)
 				{
-					mClientInfo = new ClientInfo();
+					ClientInfo = new ClientInfo();
 				}
 				//Check for the errors in the context now.
 				ArrayList Errors = PayflowUtility.AlignContext(mContext,false);
@@ -906,7 +898,7 @@ namespace PayPal.Payments.Transactions
 					}
 
 					PfProNetApi.IsStrongAssemblyTransaction = true;
-					PfProNetApi.ClientInfo = mClientInfo;
+					PfProNetApi.ClientInfo = ClientInfo;
 					ResponseValue = PfProNetApi.SubmitTransaction(mRequest, mRequestId);
 				
 					Logger.Instance.Log("PayPal.Payments.Transactions.BaseTransaction.SubmitTransaction(): Exiting", PayflowConstants.SEVERITY_DEBUG);
@@ -932,7 +924,7 @@ namespace PayPal.Payments.Transactions
 					mRequest = PfProNetApi.TransactionRequest;
 					mContext.AddErrors(PfProNetApi.TransactionContext.GetErrors());
 					mRequestId = PfProNetApi.RequestId;
-					mClientInfo = PfProNetApi.ClientInfo;
+					ClientInfo = PfProNetApi.ClientInfo;
 				}
 				else
 				{
@@ -1126,12 +1118,12 @@ namespace PayPal.Payments.Transactions
 		/// <param name="HeaderValue">Header value</param>
 		private void AddHeader(String HeaderName,String HeaderValue)
 		{
-			if(mClientInfo == null)
+			if(ClientInfo == null)
 			{
-				mClientInfo = new ClientInfo();
+				ClientInfo = new ClientInfo();
 			}
 
-			mClientInfo.AddHeaderToHash(HeaderName,HeaderValue);
+			ClientInfo.AddHeaderToHash(HeaderName,HeaderValue);
 
 		}
 
@@ -1151,11 +1143,11 @@ namespace PayPal.Payments.Transactions
 		/// <param name="HeaderName">Header Name</param>
 		private void RemoveHeader(String HeaderName)
 		{
-			if(mClientInfo != null)
+			if(ClientInfo != null)
 			{
-				if(mClientInfo.ClientInfoHash.ContainsKey(HeaderName))
+				if(ClientInfo.ClientInfoHash.ContainsKey(HeaderName))
 				{
-					mClientInfo.ClientInfoHash.Remove(HeaderName);
+					ClientInfo.ClientInfoHash.Remove(HeaderName);
 				}
 
 			}

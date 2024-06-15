@@ -90,17 +90,16 @@ namespace PayPal.Payments.DataObjects
 	/// </example>
 	public class Invoice : BaseRequestDataObject
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Billing Addresses
-		/// </summary>
-		private BillTo mBillTo;
+        /// <summary>
+        /// Billing Addresses
+        /// </summary>
 
-		/// <summary>
-		/// Shipping Addresses
-		/// </summary>
-		private ShipTo mShipTo;
+        /// <summary>
+        /// Shipping Addresses
+        /// </summary>
+        private ShipTo mShipTo;
 
 		/// <summary>
 		/// List of line items
@@ -112,40 +111,25 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mInvNum;
 
-		/// <summary>
-		/// Amount
-		/// </summary>
-		private Currency mAmt;
-
-		/// <summary>
-		/// Tax Amount
-		/// </summary>
-		private Currency mTaxAmt;
-
-		/// <summary>
-		/// Duty amount
-		/// </summary>
-		private Currency mDutyAmt;
-
-		/// <summary>
-		/// Freight amount
-		/// </summary>
-		private Currency mFreightAmt;
-
-		/// <summary>
-		/// Handling amount
-		/// </summary>
-		private Currency mHandlingAmt;
-		
-		/// <summary>
-		/// Shipping amount
-		/// </summary>
-		///private Currency mShippingAmt;
+        /// <summary>
+        /// Tax Amount
+        /// </summary>
+        private Currency mTaxAmt;
 
         /// <summary>
-		/// Discount
-		/// </summary>
-		private Currency mDiscount;
+        /// Freight amount
+        /// </summary>
+        private Currency mFreightAmt;
+
+        /// <summary>
+        /// Shipping amount
+        /// </summary>
+        ///private Currency mShippingAmt;
+
+        /// <summary>
+        /// Discount
+        /// </summary>
+        private Currency mDiscount;
 
 		/// <summary>
 		/// Description
@@ -212,55 +196,30 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mVatRegNum;
 
-		/// <summary>
-		/// Vat tax amount
-		/// </summary>
-		private Currency mVatTaxAmt;
+        /// <summary>
+        /// Local tax amount
+        /// </summary>
+        private Currency mLocalTaxAmt;
 
-		/// <summary>
-		/// Local tax amount
-		/// </summary>
-		private Currency mLocalTaxAmt;
-
-		/// <summary>
-		/// National tax amount
-		/// </summary>
-		private Currency mNationalTaxAmt;
-
-		/// <summary>
-		/// Alt tax amount
-		/// </summary>
-		private Currency mAltTaxAmt;
+        /// <summary>
+        /// Alt tax amount
+        /// </summary>
+        private Currency mAltTaxAmt;
 
 		/// <summary>
 		/// Is Tax Exempt
 		/// </summary>
 		private String mTaxExempt;
 
-		/// <summary>
-		/// Browser information object
-		/// </summary>
-		private BrowserInfo mBrowserInfo;
-
-		/// <summary>
-		/// Customer information object
-		/// </summary>
-		private CustomerInfo mCustomerInfo;
+        /// <summary>
+        /// Customer information object
+        /// </summary>
+        private CustomerInfo mCustomerInfo;
 
         /// <summary>
-        /// Merchant information object
+        /// Order Date
         /// </summary>
-        private MerchantInfo mMerchantInfo;
-
-        /// <summary>
-        /// User information object
-        /// </summary>
-        private UserItem mUserItem;
-
-		/// <summary>
-		/// Order Date
-		/// </summary>
-		private String mOrderDate;
+        private String mOrderDate;
 
 		/// <summary>
 		/// Order Time
@@ -282,15 +241,10 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mRecurring;
 
-		/// <summary>
-		/// line item amount 
-		/// </summary>
-		private Currency  mItemAmt;
-		
-		/// <summary>
-		/// OrderDesc
-		/// </summary>
-		private String mOrderDesc;
+        /// <summary>
+        /// OrderDesc
+        /// </summary>
+        private String mOrderDesc;
 
 		/// <summary>
 		/// RecurringType
@@ -321,12 +275,9 @@ namespace PayPal.Payments.DataObjects
 		/// AdviceDetailList
 		/// </summary>
 		private ArrayList mAdviceDetailList;
-		/// <summary>
-		/// Devices
-		/// </summary>
-		private Devices mDevices;
-		/// <summary>
-		/// Miscellaneous Data
+
+        /// <summary>
+        /// Miscellaneous Data
         /// </summary>
         private String mMiscData;
 		///<summary>a
@@ -423,80 +374,75 @@ namespace PayPal.Payments.DataObjects
 			mAdviceDetailList = new ArrayList();
 		}
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets, Sets  BillTo.
-		/// </summary>
-		/// <remarks>
-		/// <para>Use this property to set the billing
-		/// addresses of the purchase order.</para>
-		/// </remarks>
-		/// <example>
-		/// <code lang="C#" escaped="false">
-		///	.................
-		///	// Inv is the Invoice object
-		///	.................
-		///	// Set the Billing Address details.
-		///	BillTo Bill = New BillTo();
-		///	Bill.BillToStreet = "123 Main St.";
-		///	Bill.BillToZip = "12345";
-		///	Inv.BillTo = Bill;
-		///	.................
-		///	</code>
-		/// <code lang="Visual Basic" escaped="false">
-		///	.................
-		///	' Inv is the Invoice object
-		///	.................
-		///	' Set the Billing Address details.
-		///	Dim Bill As BillTo = New BillTo
-		///	Bill.BillToStreet = "123 Main St."
-		///	Bill.BillToZip = "12345"
-		///	Inv.BillTo = Bill
-		///	.................
-		///	</code>
-		/// </example>
-		public BillTo BillTo
-		{
-			get { return mBillTo; }
-			set { mBillTo = value; }
+        /// <summary>
+        /// Gets, Sets  BillTo.
+        /// </summary>
+        /// <remarks>
+        /// <para>Use this property to set the billing
+        /// addresses of the purchase order.</para>
+        /// </remarks>
+        /// <example>
+        /// <code lang="C#" escaped="false">
+        ///	.................
+        ///	// Inv is the Invoice object
+        ///	.................
+        ///	// Set the Billing Address details.
+        ///	BillTo Bill = New BillTo();
+        ///	Bill.BillToStreet = "123 Main St.";
+        ///	Bill.BillToZip = "12345";
+        ///	Inv.BillTo = Bill;
+        ///	.................
+        ///	</code>
+        /// <code lang="Visual Basic" escaped="false">
+        ///	.................
+        ///	' Inv is the Invoice object
+        ///	.................
+        ///	' Set the Billing Address details.
+        ///	Dim Bill As BillTo = New BillTo
+        ///	Bill.BillToStreet = "123 Main St."
+        ///	Bill.BillToZip = "12345"
+        ///	Inv.BillTo = Bill
+        ///	.................
+        ///	</code>
+        /// </example>
+        public BillTo BillTo { get; set; }
 
-		}
-
-		/// <summary>
-		/// Gets, Sets  ShipTo.
-		/// </summary>
-		/// <remarks>
-		/// <para>Use this property to set the shipping
-		/// addresses of the purchase order.</para>
-		/// </remarks>
-		/// <example>
-		/// <code lang="C#" escaped="false">
-		///	.................
-		///	// Inv is the Invoice object
-		///	.................
-		///	// Set the Shipping Address details.
-		///	ShipTo Ship = New ShipTo();
-		///	Ship.ShipToStreet = "685A E. Middlefield Rd.";
-		///	Ship.ShipToZip = "94043";
-		///	Inv.ShipTo = Ship;
-		///	.................
-		///	</code>
-		/// <code lang="Visual Basic" escaped="false">
-		///	.................
-		///	' Inv is the Invoice object
-		///	.................
-		///	' Set the Shipping Address details.
-		///	Dim Ship As ShipTo = New ShipTo
-		///	Ship.ShipToStreet = "685A E. Middlefield Rd."
-		///	Ship.ShipToZip = "94043"
-		///	Inv.ShipTo = Ship
-		///	.................
-		///	</code>
-		/// </example>
-		public ShipTo ShipTo
+        /// <summary>
+        /// Gets, Sets  ShipTo.
+        /// </summary>
+        /// <remarks>
+        /// <para>Use this property to set the shipping
+        /// addresses of the purchase order.</para>
+        /// </remarks>
+        /// <example>
+        /// <code lang="C#" escaped="false">
+        ///	.................
+        ///	// Inv is the Invoice object
+        ///	.................
+        ///	// Set the Shipping Address details.
+        ///	ShipTo Ship = New ShipTo();
+        ///	Ship.ShipToStreet = "685A E. Middlefield Rd.";
+        ///	Ship.ShipToZip = "94043";
+        ///	Inv.ShipTo = Ship;
+        ///	.................
+        ///	</code>
+        /// <code lang="Visual Basic" escaped="false">
+        ///	.................
+        ///	' Inv is the Invoice object
+        ///	.................
+        ///	' Set the Shipping Address details.
+        ///	Dim Ship As ShipTo = New ShipTo
+        ///	Ship.ShipToStreet = "685A E. Middlefield Rd."
+        ///	Ship.ShipToZip = "94043"
+        ///	Inv.ShipTo = Ship
+        ///	.................
+        ///	</code>
+        /// </example>
+        public ShipTo ShipTo
 		{
 			get { return mShipTo; }
 			set { mShipTo = value; }
@@ -522,10 +468,10 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		/// <remarks>
 		/// <para>Merchant invoice number. This reference number 
-		/// (PNREF—generated by PayPal) is used for authorizations 
+		/// (PNREFï¿½generated by PayPal) is used for authorizations 
 		/// and settlements.</para>
 		/// <para>The Acquire decides if this information will 
-		/// appear on the merchant’s bank reconciliation statement.
+		/// appear on the merchantï¿½s bank reconciliation statement.
 		/// </para>
 		/// <para>Maps to Payflow Parameter:</para>
 		/// <code>INVNUM</code>
@@ -536,159 +482,147 @@ namespace PayPal.Payments.DataObjects
 			set { mInvNum = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  Amt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Amount (US Dollars) U.S. based currency. 
-		/// Specify the exact amount to the cent using a decimal 
-		/// point—use 34.00, not 34. Do not include comma 
-		/// separators—use 1199.95 not 1,199.95.</para>
-		/// <para>Your processor and/or Internet merchant account 
-		/// provider may stipulate a maximum amount.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>AMT</code>
-		/// </remarks>
-		/// <example>
-		/// <code lang="C#" escaped="false">
-		///	.................
-		///	// Inv is the Invoice object
-		///	.................
-		/// // Set the Amount for the invoice.
-		/// // A valid amount is a two decimal value.
-		/// Currency Amt = new Currency(new decimal(25.12))
-		/// //For values which have more than two decimal places 
-		/// Currency Amt = new Currency(new decimal(25.1214));
-		/// Amt.NoOfDecimalDigits = 2;
-		/// //If the NoOfDecimalDigits property is used then it is mandatory to set one of the following properties to true.
-		/// Amt.Round = true;
-		/// Amt.Truncate = true;
-		/// Inv.Amt = Amt;
-		///	.................
-		///	</code>
-		/// <code lang="Visual Basic" escaped="false">
-		///	.................
-		///	' Inv is the Invoice object
-		///	.................
-		/// 'Set the Amount for the invoice.
-		/// 'A valid amount is a two decimal value.
-		/// Dim Amt as new Currency(new decimal(25.12))
-		/// 'For values which have more than two decimal places 
-		/// Dim Amt as new Currency(new decimal(25.1214))
-		/// Amt.NoOfDecimalDigits = 2
-		/// 'If the NoOfDecimalDigits property is used then it is mandatory to set one of the following properties to true.
-		/// Amt.Round = true
-		/// Amt.Truncate = true
-		/// Inv.Amt = Amt;
-		/// ................
-		///	</code>
-		/// </example>
-		public Currency Amt
-		{
-			get { return mAmt; }
-			set { mAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets  Amt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Amount (US Dollars) U.S. based currency. 
+        /// Specify the exact amount to the cent using a decimal 
+        /// pointï¿½use 34.00, not 34. Do not include comma 
+        /// separatorsï¿½use 1199.95 not 1,199.95.</para>
+        /// <para>Your processor and/or Internet merchant account 
+        /// provider may stipulate a maximum amount.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>AMT</code>
+        /// </remarks>
+        /// <example>
+        /// <code lang="C#" escaped="false">
+        ///	.................
+        ///	// Inv is the Invoice object
+        ///	.................
+        /// // Set the Amount for the invoice.
+        /// // A valid amount is a two decimal value.
+        /// Currency Amt = new Currency(new decimal(25.12))
+        /// //For values which have more than two decimal places 
+        /// Currency Amt = new Currency(new decimal(25.1214));
+        /// Amt.NoOfDecimalDigits = 2;
+        /// //If the NoOfDecimalDigits property is used then it is mandatory to set one of the following properties to true.
+        /// Amt.Round = true;
+        /// Amt.Truncate = true;
+        /// Inv.Amt = Amt;
+        ///	.................
+        ///	</code>
+        /// <code lang="Visual Basic" escaped="false">
+        ///	.................
+        ///	' Inv is the Invoice object
+        ///	.................
+        /// 'Set the Amount for the invoice.
+        /// 'A valid amount is a two decimal value.
+        /// Dim Amt as new Currency(new decimal(25.12))
+        /// 'For values which have more than two decimal places 
+        /// Dim Amt as new Currency(new decimal(25.1214))
+        /// Amt.NoOfDecimalDigits = 2
+        /// 'If the NoOfDecimalDigits property is used then it is mandatory to set one of the following properties to true.
+        /// Amt.Round = true
+        /// Amt.Truncate = true
+        /// Inv.Amt = Amt;
+        /// ................
+        ///	</code>
+        /// </example>
+        public Currency Amt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  TaxAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Tax Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>TAXAMT</code>
-		/// </remarks>
-		public Currency TaxAmt
+        /// <summary>
+        /// Gets, Sets  TaxAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Tax Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>TAXAMT</code>
+        /// </remarks>
+        public Currency TaxAmt
 		{
 			get { return mTaxAmt; }
 			set { mTaxAmt = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  DutyAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Sometimes called import tax.
-		///  Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>DUTYAMT</code>
-		/// </remarks>
-		public Currency DutyAmt
-		{
-			get { return mDutyAmt; }
-			set { mDutyAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets  DutyAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Sometimes called import tax.
+        ///  Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>DUTYAMT</code>
+        /// </remarks>
+        public Currency DutyAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  FreightAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Freight Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>FREIGHTAMT</code>
-		/// </remarks>
-		public Currency FreightAmt
+        /// <summary>
+        /// Gets, Sets  FreightAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Freight Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>FREIGHTAMT</code>
+        /// </remarks>
+        public Currency FreightAmt
 		{
 			get { return mFreightAmt; }
 			set { mFreightAmt = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  HandlingAmt
-		/// </summary>
-		/// <remarks>
-		/// <para>Handling Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>HANDLINGAMT</code>
-		/// </remarks>
-		public Currency HandlingAmt
-		{
-			get { return mHandlingAmt; }
-			set { mHandlingAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets  HandlingAmt
+        /// </summary>
+        /// <remarks>
+        /// <para>Handling Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>HANDLINGAMT</code>
+        /// </remarks>
+        public Currency HandlingAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  ShippingAmt
-		/// </summary>
-		/// <remarks>
-		/// <para>Shipping Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>SHIPPINGAMT</code>
-		/// </remarks>
-		///public Currency ShippingAmt
-		///{
-		/// get { return mShippingAmt; }
-		///	set { mShippingAmt = value; }
-		///}
+        /// <summary>
+        /// Gets, Sets  ShippingAmt
+        /// </summary>
+        /// <remarks>
+        /// <para>Shipping Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>SHIPPINGAMT</code>
+        /// </remarks>
+        ///public Currency ShippingAmt
+        ///{
+        /// get { return mShippingAmt; }
+        ///	set { mShippingAmt = value; }
+        ///}
 
-		
 
-		/// <summary>
-		/// Gets, Sets  Discount.
-		/// </summary>
-		/// <remarks>
-		/// <para>Discount amount on total sale. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>DISCOUNT</code>
-		/// </remarks>
-		public Currency Discount
+
+        /// <summary>
+        /// Gets, Sets  Discount.
+        /// </summary>
+        /// <remarks>
+        /// <para>Discount amount on total sale. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>DISCOUNT</code>
+        /// </remarks>
+        public Currency Discount
 		{
 			get { return mDiscount; }
 			set { mDiscount = value; }
@@ -910,143 +844,131 @@ namespace PayPal.Payments.DataObjects
 			set { mVatRegNum = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  VatTaxAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>VAT Tax Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>VATTAXAMT</code>
-		/// </remarks>
-		public Currency VatTaxAmt
-		{
-			get { return mVatTaxAmt; }
-			set { mVatTaxAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets  VatTaxAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>VAT Tax Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>VATTAXAMT</code>
+        /// </remarks>
+        public Currency VatTaxAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  LocalTaxAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Local Tax Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>LOCALTAXAMT</code>
-		/// </remarks>
-		public Currency LocalTaxAmt
+        /// <summary>
+        /// Gets, Sets  LocalTaxAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Local Tax Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>LOCALTAXAMT</code>
+        /// </remarks>
+        public Currency LocalTaxAmt
 		{
 			get { return mLocalTaxAmt; }
 			set { mLocalTaxAmt = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  NationalTaxAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>National Tax Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>NATIONALTAXAMT</code>
-		/// </remarks>
-		public Currency NationalTaxAmt
-		{
-			get { return mNationalTaxAmt; }
-			set { mNationalTaxAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets  NationalTaxAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>National Tax Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>NATIONALTAXAMT</code>
+        /// </remarks>
+        public Currency NationalTaxAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  AltTaxAmt.
-		/// </summary>
-		/// <remarks>
-		/// <para>Alternate Tax Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>ALTTAXAMT</code>
-		/// </remarks>
-		public Currency AltTaxAmt
+        /// <summary>
+        /// Gets, Sets  AltTaxAmt.
+        /// </summary>
+        /// <remarks>
+        /// <para>Alternate Tax Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>ALTTAXAMT</code>
+        /// </remarks>
+        public Currency AltTaxAmt
 		{
 			get { return mAltTaxAmt; }
 			set { mAltTaxAmt = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  BrowserInfo.
-		/// </summary>
-		/// <remarks>
-		/// <para>Use this property to set the browser 
-		/// related information of the purchase order.</para>
-		/// </remarks>
-		/// <example>
-		/// <code lang="C#" escaped="false">
-		///	.................
-		///	// Inv is the Invoice object
-		///	.................
-		///	// Set the Browser Info details.
-		///	BrowserInfo Browser = New BrowserInfo();
-		///	Browser.BrowserCountryCode = "USA";
-		///	Browser.BrowserUserAgent = "IE 6.0";
-		///	Inv.BrowserInfo = Browser;
-		///	.................
-		///	</code>
-		/// <code lang="Visual Basic" escaped="false">
-		///	.................
-		///	' Inv is the Invoice object
-		///	.................
-		///	' Set the Browser Info details.
-		///	Dim Browser As BrowserInfo = New BrowserInfo
-		///	Browser.BrowserCountryCode  = "USA"
-		///	Browser.BrowserUserAgent = "IE 6.0"
-		///	Inv.BrowserInfo = Browser
-		///	.................
-		///	</code>
-		/// </example>
-		public BrowserInfo BrowserInfo
-		{
-			get { return mBrowserInfo; }
-			set { mBrowserInfo = value; }
-		}
+        /// <summary>
+        /// Gets, Sets  BrowserInfo.
+        /// </summary>
+        /// <remarks>
+        /// <para>Use this property to set the browser 
+        /// related information of the purchase order.</para>
+        /// </remarks>
+        /// <example>
+        /// <code lang="C#" escaped="false">
+        ///	.................
+        ///	// Inv is the Invoice object
+        ///	.................
+        ///	// Set the Browser Info details.
+        ///	BrowserInfo Browser = New BrowserInfo();
+        ///	Browser.BrowserCountryCode = "USA";
+        ///	Browser.BrowserUserAgent = "IE 6.0";
+        ///	Inv.BrowserInfo = Browser;
+        ///	.................
+        ///	</code>
+        /// <code lang="Visual Basic" escaped="false">
+        ///	.................
+        ///	' Inv is the Invoice object
+        ///	.................
+        ///	' Set the Browser Info details.
+        ///	Dim Browser As BrowserInfo = New BrowserInfo
+        ///	Browser.BrowserCountryCode  = "USA"
+        ///	Browser.BrowserUserAgent = "IE 6.0"
+        ///	Inv.BrowserInfo = Browser
+        ///	.................
+        ///	</code>
+        /// </example>
+        public BrowserInfo BrowserInfo { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  CustomerInfo.
-		/// </summary>
-		/// <remarks>
-		/// <para>Use this property to set the customer 
-		/// related information of the purchase order.</para>
-		/// </remarks>
-		/// <example>
-		/// <code lang="C#" escaped="false">
-		///	.................
-		///	// Inv is the Invoice object
-		///	.................
-		///	// Set the Customer Info details.
-		///	CustomerInfo Cust = New CustomerInfo();
-		///	Cust.CustCode = "CustXXXXX";
-		///	Cust.CustIP = "255.255.255.255";
-		///	Inv.CustomerInfo = Cust;
-		///	.................
-		///	</code>
-		/// <code lang="Visual Basic" escaped="false">
-		///	.................
-		///	' Inv is the Invoice object
-		///	.................
-		///	' Set the Customer Info details.
-		///	Dim Cust As CustomerInfo = New CustomerInfo
-		///	Cust.CustCode = "CustXXXXX"
-		///	Cust.CustIP = "255.255.255.255"
-		///	Inv.CustomerInfo = Cust
-		///	.................
-		///	</code>
-		/// </example>
-		public CustomerInfo CustomerInfo
+        /// <summary>
+        /// Gets, Sets  CustomerInfo.
+        /// </summary>
+        /// <remarks>
+        /// <para>Use this property to set the customer 
+        /// related information of the purchase order.</para>
+        /// </remarks>
+        /// <example>
+        /// <code lang="C#" escaped="false">
+        ///	.................
+        ///	// Inv is the Invoice object
+        ///	.................
+        ///	// Set the Customer Info details.
+        ///	CustomerInfo Cust = New CustomerInfo();
+        ///	Cust.CustCode = "CustXXXXX";
+        ///	Cust.CustIP = "255.255.255.255";
+        ///	Inv.CustomerInfo = Cust;
+        ///	.................
+        ///	</code>
+        /// <code lang="Visual Basic" escaped="false">
+        ///	.................
+        ///	' Inv is the Invoice object
+        ///	.................
+        ///	' Set the Customer Info details.
+        ///	Dim Cust As CustomerInfo = New CustomerInfo
+        ///	Cust.CustCode = "CustXXXXX"
+        ///	Cust.CustIP = "255.255.255.255"
+        ///	Inv.CustomerInfo = Cust
+        ///	.................
+        ///	</code>
+        /// </example>
+        public CustomerInfo CustomerInfo
 		{
 			get { return mCustomerInfo; }
 			set { mCustomerInfo = value; }
@@ -1084,11 +1006,7 @@ namespace PayPal.Payments.DataObjects
         ///	.................
         ///	</code>
         /// </example>
-        public MerchantInfo MerchantInfo
-        {
-            get { return mMerchantInfo; }
-            set { mMerchantInfo = value; }
-        }
+        public MerchantInfo MerchantInfo { get; set; }
 
         /// <summary>
         /// Gets, Sets  UserItem.
@@ -1121,23 +1039,19 @@ namespace PayPal.Payments.DataObjects
         ///	.................
         ///	</code>
         /// </example>
-        public UserItem UserItem
-        {
-            get { return mUserItem; }
-            set { mUserItem = value; }
-        }
+        public UserItem UserItem { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  OrderDate.
-		/// </summary>
-		/// <remarks>
-		/// <para>Order date.</para>
-		/// <para>Format: mmddyy</para>
-		/// <para>mm - Month, dd - Day, yy - Year.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>ORDERDATE</code>
-		/// </remarks>
-		public String OrderDate
+        /// <summary>
+        /// Gets, Sets  OrderDate.
+        /// </summary>
+        /// <remarks>
+        /// <para>Order date.</para>
+        /// <para>Format: mmddyy</para>
+        /// <para>mm - Month, dd - Day, yy - Year.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>ORDERDATE</code>
+        /// </remarks>
+        public String OrderDate
 		{
 			get { return mOrderDate; }
 			set { mOrderDate = value; }
@@ -1199,31 +1113,27 @@ namespace PayPal.Payments.DataObjects
 			set { mRecurring = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets line item Amount.
-		/// </summary>
-		/// <remarks>
-		/// <para>Item Amount. Amount should always be a decimal.
-		///  Exact amount to the cent (34.00, not 34). 
-		///  Do not include comma separators. Use 1199.95 
-		///  instead of 1,199.95.</para>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>ITEMAMT</code>
-		/// </remarks>
-		public Currency ItemAmt
-		{
-			get { return mItemAmt; }
-			set { mItemAmt = value; }
-		}
+        /// <summary>
+        /// Gets, Sets line item Amount.
+        /// </summary>
+        /// <remarks>
+        /// <para>Item Amount. Amount should always be a decimal.
+        ///  Exact amount to the cent (34.00, not 34). 
+        ///  Do not include comma separators. Use 1199.95 
+        ///  instead of 1,199.95.</para>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>ITEMAMT</code>
+        /// </remarks>
+        public Currency ItemAmt { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  OrderDesc.
-		/// </summary>
-		/// <remarks>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>ORDERDESC</code>
-		/// </remarks>
-		public String OrderDesc
+        /// <summary>
+        /// Gets, Sets  OrderDesc.
+        /// </summary>
+        /// <remarks>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>ORDERDESC</code>
+        /// </remarks>
+        public String OrderDesc
 		{
 			get { return mOrderDesc; }
 			set { mOrderDesc = value; }
@@ -1327,52 +1237,48 @@ namespace PayPal.Payments.DataObjects
 			set { mReportGroup = value; }
 		}
 
-		/// <summary>
-		/// Gets, Sets Devices.
-		/// </summary>
-		/// <remarks>
-		/// <para>
-		/// Items that reflect what type of device; either termainal or card is used or presented.
-		/// </para>
-		/// </remarks>
-		/// <example>
-		/// <code lang="C#" escaped="false">
-		///	.................
-		///	// Inv is the Invoice object
-		///	.................
-		///	// Create a new Devices object.
-		///	Devices UsedDevices = new Devices();
-		///	UsedDevices.CatType = "3";
-		///	UsedDevices.Contactless = "RFD";
-		///	Inv.Devices = UsedDevices;
-		///	.................
-		///	</code>
-		/// <code lang="Visual Basic" escaped="false">
-		///	.................
-		///	' Inv is the Invoice object
-		///	.................
+        /// <summary>
+        /// Gets, Sets Devices.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Items that reflect what type of device; either termainal or card is used or presented.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// <code lang="C#" escaped="false">
+        ///	.................
+        ///	// Inv is the Invoice object
+        ///	.................
+        ///	// Create a new Devices object.
+        ///	Devices UsedDevices = new Devices();
+        ///	UsedDevices.CatType = "3";
+        ///	UsedDevices.Contactless = "RFD";
+        ///	Inv.Devices = UsedDevices;
+        ///	.................
+        ///	</code>
+        /// <code lang="Visual Basic" escaped="false">
+        ///	.................
+        ///	' Inv is the Invoice object
+        ///	.................
         /// ' Set the device/card capabilities
         /// Dim UsedDevices As Devices = New Devices
         /// UsedDevices.CatType = "3"
         /// UsedDevices.Contactless = "RFD"
         /// Inv.Devices = UsedDevices
-		///	.................
-		///	</code>
-		/// </example>
-		public Devices Devices
-		{
-			get { return mDevices; }
-			set { mDevices = value; }
-		}
+        ///	.................
+        ///	</code>
+        /// </example>
+        public Devices Devices { get; set; }
 
-		/// <summary>
-		/// Gets, Sets  Miscellaneous Data.
-		/// </summary>
-		/// <remarks>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>MISCDATA</code>
-		/// </remarks>
-		public String MiscData
+        /// <summary>
+        /// Gets, Sets  Miscellaneous Data.
+        /// </summary>
+        /// <remarks>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>MISCDATA</code>
+        /// </remarks>
+        public String MiscData
 		{
 			get { return mMiscData; }
 			set { mMiscData = value; }
@@ -1645,17 +1551,17 @@ namespace PayPal.Payments.DataObjects
 			try
 			{
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_INVNUM, mInvNum));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_AMT, mAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_AMT, Amt));
 				// if no Amt passed, skip CurrencyCode.
-				if (mAmt != null) 
+				if (Amt != null) 
 				{
-					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CURRENCY,mAmt.CurrencyCode));
+					RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CURRENCY,Amt.CurrencyCode));
 				}
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_TAXEXEMPT, mTaxExempt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_TAXAMT, mTaxAmt));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_DUTYAMT, mDutyAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_DUTYAMT, DutyAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_FREIGHTAMT, mFreightAmt));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_HANDLINGAMT, mHandlingAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_HANDLINGAMT, HandlingAmt));
 				//RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_SHIPPINGAMT, mShippingAmt ));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_DISCOUNT, mDiscount));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_DESC, mDesc));
@@ -1668,9 +1574,9 @@ namespace PayPal.Payments.DataObjects
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CUSTREF, mCustRef));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PONUM, mPoNum));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_VATREGNUM, mVatRegNum));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_VATTAXAMT, mVatTaxAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_VATTAXAMT, VatTaxAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_LOCALTAXAMT, mLocalTaxAmt));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_NATIONALTAXAMT, mNationalTaxAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_NATIONALTAXAMT, NationalTaxAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ALTTAXAMT, mAltTaxAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_COMMCODE, mCommCode));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_VATTAXPERCENT, mVatTaxPercent));
@@ -1680,7 +1586,7 @@ namespace PayPal.Payments.DataObjects
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORDERDATE, mOrderDate));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORDERTIME, mOrderTime));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_RECURRING, mRecurring));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ITEMAMT, mItemAmt));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ITEMAMT, ItemAmt));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORDERDESC, mOrderDesc));
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_RECURRINGTYPE, mRecurringType));
                 RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORDERID, mOrderId));
@@ -1693,48 +1599,48 @@ namespace PayPal.Payments.DataObjects
 
 
 
-				if (mBillTo != null)
+				if (BillTo != null)
 				{
-					mBillTo.RequestBuffer = RequestBuffer;
-					mBillTo.GenerateRequest();
+					BillTo.RequestBuffer = RequestBuffer;
+					BillTo.GenerateRequest();
 				}
 				if (mShipTo != null)
 				{
 					mShipTo.RequestBuffer = RequestBuffer;
 					mShipTo.GenerateRequest();
 				}
-				if (mBrowserInfo != null)
+				if (BrowserInfo != null)
 				{
-					mBrowserInfo.RequestBuffer = RequestBuffer;
-					mBrowserInfo.GenerateRequest();
+					BrowserInfo.RequestBuffer = RequestBuffer;
+					BrowserInfo.GenerateRequest();
 				}
 				if (mCustomerInfo != null)
 				{
 					mCustomerInfo.RequestBuffer = RequestBuffer;
 					mCustomerInfo.GenerateRequest();
 				}
-                if (mMerchantInfo != null)
+                if (MerchantInfo != null)
                 {
-                    mMerchantInfo.RequestBuffer = RequestBuffer;
-                    mMerchantInfo.GenerateRequest();
+                    MerchantInfo.RequestBuffer = RequestBuffer;
+                    MerchantInfo.GenerateRequest();
                 }
                 if (mItemList != null && mItemList.Count > 0)
 				{
 					GenerateItemRequest();
 				}
-                if (mUserItem != null)
+                if (UserItem != null)
                 {
-                    mUserItem.RequestBuffer = RequestBuffer;
-                    mUserItem.GenerateRequest();
+                    UserItem.RequestBuffer = RequestBuffer;
+                    UserItem.GenerateRequest();
                 }
 				if (mAdviceDetailList != null && mAdviceDetailList.Count > 0)
 				{
 					GenerateAdviceDetailRequest();
 				}
-                if (mDevices!= null)
+                if (Devices!= null)
                 {
-                    mDevices.RequestBuffer = RequestBuffer;
-                    mDevices.GenerateRequest();
+                    Devices.RequestBuffer = RequestBuffer;
+                    Devices.GenerateRequest();
                 }
 
 			}

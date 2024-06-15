@@ -58,18 +58,14 @@ namespace PayPal.Payments.Communication
 		/// Context object.
 		/// </summary>
 		private Context psmContext;
-		/// <summary>
-		/// Client information.
-		/// </summary>
-		private ClientInfo mClientInfo;
-		#endregion		
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets the instance of PaymentStateMachine.
-		/// </summary>
-		public static PaymentStateMachine Instance
+        /// <summary>
+        /// Gets the instance of PaymentStateMachine.
+        /// </summary>
+        public static PaymentStateMachine Instance
 		{
 			get { return new PaymentStateMachine(); }
 
@@ -182,23 +178,21 @@ namespace PayPal.Payments.Communication
 			}
 		}
 
-		/// <summary>
-		/// Client information.
-		/// </summary>
-		public ClientInfo ClientInfo
-		{
-			get { return mClientInfo;}
-			//set { mClientInfo = value; }
-		}
+        /// <summary>
+        /// Client information.
+        /// </summary>
+        public ClientInfo ClientInfo { get; private set;
+            //set { mClientInfo = value; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "Constructors"
+        #region "Constructors"
 
-		/// <summary>
-		/// Private constructor for PaymentStateMachine
-		/// </summary>
-		private PaymentStateMachine()
+        /// <summary>
+        /// Private constructor for PaymentStateMachine
+        /// </summary>
+        private PaymentStateMachine()
 		{
 			psmContext = new Context();
 			mConnection = new PaymentConnection(ref psmContext);
@@ -243,11 +237,11 @@ namespace PayPal.Payments.Communication
 				}
 			}
 
-			mClientInfo.OsVersion = mVitOSVersion ;
-			mClientInfo.OsName = mVitOSName;
-			mClientInfo.OsArchitecture = mVitOSArch;
-			mClientInfo.RunTimeVersion = mVitRuntimeVersion;
-			mClientInfo.Proxy = mVitProxy;
+			ClientInfo.OsVersion = mVitOSVersion ;
+			ClientInfo.OsName = mVitOSName;
+			ClientInfo.OsArchitecture = mVitOSArch;
+			ClientInfo.RunTimeVersion = mVitRuntimeVersion;
+			ClientInfo.Proxy = mVitProxy;
 		}
 
 
@@ -272,15 +266,15 @@ namespace PayPal.Payments.Communication
 				this.mConnection.InitializeConnection(HostAddress, HostPort, TimeOut, ProxyAddress, ProxyPort, ProxyLogon, ProxyPassword);
 				if(ClientInfo != null)
 				{
-					mClientInfo = ClientInfo;
+                    this.ClientInfo = ClientInfo;
 				}
 				else
 				{
-					mClientInfo = new ClientInfo();
+                    this.ClientInfo = new ClientInfo();
 				}
 				
 				this.SetVersionTracking();
-				this.mConnection.ClientInfo = mClientInfo;
+				this.mConnection.ClientInfo = this.ClientInfo;
 			}
 			catch (Exception Ex)
 			{
@@ -379,7 +373,7 @@ namespace PayPal.Payments.Communication
 			{
 				// perform state transition
 				mPaymentState = GetNextState(mPaymentState);
-				mClientInfo = mConnection.ClientInfo;
+				ClientInfo = mConnection.ClientInfo;
 				Logger.Instance.Log("PayPal.Payments.Communication.PaymentStateMachine.Execute(): Exiting.  Current State = " + mPaymentState.GetType().ToString(),
 				                    PayflowConstants.SEVERITY_DEBUG);
 			}

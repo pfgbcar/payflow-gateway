@@ -118,57 +118,36 @@ namespace PayPal.Payments.DataObjects
 	///  </example>
 	public sealed class Response
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Fraud Response
-		/// </summary>
-		private FraudResponse mFraudResponse;
+        /// <summary>
+        /// Fraud Response
+        /// </summary>
 
-		/// <summary>
-		/// Buyer auth response
-		/// </summary>
-		private BuyerAuthResponse mBuyerAuthResponse;
+        /// <summary>
+        /// Buyer auth response
+        /// </summary>
+        private BuyerAuthResponse mBuyerAuthResponse;
 
-		/// <summary>
-		/// Recurring response
-		/// </summary>
-		private RecurringResponse mRecurringResponse;
+        /// <summary>
+        /// Get express checkout details response
+        /// </summary>
+        private ECGetResponse mGetExpressCheckoutDetailsResponse;
 
-		/// <summary>
-		/// Get express checkout details response
-		/// </summary>
-		private ECGetResponse mGetExpressCheckoutDetailsResponse;
+        /// <summary>
+        /// ExpressCheckoutResponse
+        /// </summary>
+        private ExpressCheckoutResponse mSetExpressCheckoutPaymentResponse;
 
-		/// <summary>
-		/// DoExpressCheckoutResponse
-		/// </summary>
-		private ECDoResponse mDoExpressCheckoutPaymentResponse;
+        /// <summary>
+        /// Transaction response
+        /// </summary>
+        private TransactionResponse mTransactionResponse;
 
-		/// <summary>
-		/// ExpressCheckoutResponse
-		/// </summary>
-		private ExpressCheckoutResponse mSetExpressCheckoutPaymentResponse;
-
-		/// <summary>
-		/// UpdateExpressCheckoutResponse
-		/// </summary>
-		private ECUpdateResponse mUpdateExpressCheckoutPaymentResponse;
-
-		/// <summary>
-		/// Transaction response
-		/// </summary>
-		private TransactionResponse mTransactionResponse;
-
-		/// <summary>
-		/// Holds the transaction context
-		/// </summary>
-		private Context mContext;
-
-		/// <summary>
-		/// Holds parsed response hash table
-		/// </summary>
-		private Hashtable mResponseHashTable;
+        /// <summary>
+        /// Holds parsed response hash table
+        /// </summary>
+        private Hashtable mResponseHashTable;
 
 		/// <summary>
 		/// Holds Extended data from response
@@ -191,125 +170,110 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mRequestId;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets FraudResult
-		/// </summary>
-		/// <remarks>Gets the container object for all the fraud filters
-		/// related response messages.
-		/// <seealso cref="FraudResponse"/>
-		/// </remarks>
-		public FraudResponse FraudResponse
-		{
-			get { return mFraudResponse; }
-		}
+        /// <summary>
+        /// Gets FraudResult
+        /// </summary>
+        /// <remarks>Gets the container object for all the fraud filters
+        /// related response messages.
+        /// <seealso cref="FraudResponse"/>
+        /// </remarks>
+        public FraudResponse FraudResponse { get; private set; }
 
-		/// <summary>
-		/// Gets BuyerAuthResult
-		/// </summary>
-		/// <remarks>Gets the container object for all the buyer auth 
-		/// related response messages.
-		/// <seealso cref="BuyerAuthResponse"/>
-		/// </remarks>
-		public BuyerAuthResponse BuyerAuthResponse
+        /// <summary>
+        /// Gets BuyerAuthResult
+        /// </summary>
+        /// <remarks>Gets the container object for all the buyer auth 
+        /// related response messages.
+        /// <seealso cref="BuyerAuthResponse"/>
+        /// </remarks>
+        public BuyerAuthResponse BuyerAuthResponse
 		{
 			get { return mBuyerAuthResponse; }
 		}
 
-		/// <summary>
-		/// Gets RecurringResult
-		/// </summary>
-		/// <remarks>Gets the container object for all the recurring 
-		/// transaction related response messages.
-		/// <seealso cref="RecurringResponse"/>
-		/// </remarks>
-		public RecurringResponse RecurringResponse
-		{
-			get { return mRecurringResponse; }
-		}
+        /// <summary>
+        /// Gets RecurringResult
+        /// </summary>
+        /// <remarks>Gets the container object for all the recurring 
+        /// transaction related response messages.
+        /// <seealso cref="RecurringResponse"/>
+        /// </remarks>
+        public RecurringResponse RecurringResponse { get; private set; }
 
-		/// <summary>
-		/// Gets ExpressCheckout Response for GET action
-		/// </summary>
-		/// <remarks>Gets the container object for all the express
-		/// checkout related response messages for GET.
-		/// <seealso cref="RecurringResponse"/>
-		/// </remarks>
-		public ECGetResponse ExpressCheckoutGetResponse
+        /// <summary>
+        /// Gets ExpressCheckout Response for GET action
+        /// </summary>
+        /// <remarks>Gets the container object for all the express
+        /// checkout related response messages for GET.
+        /// <seealso cref="RecurringResponse"/>
+        /// </remarks>
+        public ECGetResponse ExpressCheckoutGetResponse
 		{
 			get { return mGetExpressCheckoutDetailsResponse; }
 		}
 
-		/// <summary>
-		/// Gets ExpressCheckout Response for DO action
-		/// </summary>
-		/// <remarks>Gets the container object for all the express
-		/// checkout related response messages for DO.
-		/// <seealso cref="RecurringResponse"/>
-		/// </remarks>
-		public ECDoResponse ExpressCheckoutDoResponse
-		{
-			get { return mDoExpressCheckoutPaymentResponse; }
-		}
-		
-		/// <summary>
-		/// Gets ExpressCheckout Response for Set action
-		/// </summary>
-		/// <remarks>Gets the container object for all the express
-		/// checkout related response messages for SET.
-		/// <seealso cref="RecurringResponse"/>
-		/// </remarks>
-		public ExpressCheckoutResponse ExpressCheckoutSetResponse
+        /// <summary>
+        /// Gets ExpressCheckout Response for DO action
+        /// </summary>
+        /// <remarks>Gets the container object for all the express
+        /// checkout related response messages for DO.
+        /// <seealso cref="RecurringResponse"/>
+        /// </remarks>
+        public ECDoResponse ExpressCheckoutDoResponse { get; private set; }
+
+        /// <summary>
+        /// Gets ExpressCheckout Response for Set action
+        /// </summary>
+        /// <remarks>Gets the container object for all the express
+        /// checkout related response messages for SET.
+        /// <seealso cref="RecurringResponse"/>
+        /// </remarks>
+        public ExpressCheckoutResponse ExpressCheckoutSetResponse
 		{
 			get { return mSetExpressCheckoutPaymentResponse; }
 		}
-		/// <summary>
-		/// Gets ExpressCheckout Response for Update action
-		/// </summary>
-		/// <remarks>Gets the container object for all the express
-		/// checkout related response messages for UPDATE.
-		/// <seealso cref="RecurringResponse"/>
-		/// </remarks>
-		public ECUpdateResponse ExpressCheckoutUpdateResponse
-		{
-			get { return mUpdateExpressCheckoutPaymentResponse; }
-		}
-		/// <summary>
-		/// Gets TransactionResult
-		/// </summary>
-		/// <remarks>Gets the container object for response messages common to
-		/// all the transactions.
-		/// <seealso cref="TransactionResponse"/>
-		/// </remarks>
-		public TransactionResponse TransactionResponse
+        /// <summary>
+        /// Gets ExpressCheckout Response for Update action
+        /// </summary>
+        /// <remarks>Gets the container object for all the express
+        /// checkout related response messages for UPDATE.
+        /// <seealso cref="RecurringResponse"/>
+        /// </remarks>
+        public ECUpdateResponse ExpressCheckoutUpdateResponse { get; private set; }
+        /// <summary>
+        /// Gets TransactionResult
+        /// </summary>
+        /// <remarks>Gets the container object for response messages common to
+        /// all the transactions.
+        /// <seealso cref="TransactionResponse"/>
+        /// </remarks>
+        public TransactionResponse TransactionResponse
 		{
 			get { return mTransactionResponse; }
 		}
 
-		/// <summary>
-		/// Gets transaction context
-		/// </summary>
-		/// <remarks>Gets the transaction context 
-		/// populated with errors, if any.
-		/// <seealso cref="Context"/>
-		/// </remarks>
-		public Context TransactionContext
-		{
-			get { return mContext; }
-		}
+        /// <summary>
+        /// Gets transaction context
+        /// </summary>
+        /// <remarks>Gets the transaction context 
+        /// populated with errors, if any.
+        /// <seealso cref="Context"/>
+        /// </remarks>
+        public Context TransactionContext { get; }
 
-		/// <summary>
-		/// Gets extended response
-		/// list.
-		/// </summary>
-		/// <remarks>This arraylist contains the extend data objects populated
-		/// with the response messages.
-		/// <seealso cref="ExtendData"/>
-		/// </remarks>
-		public ArrayList ExtendDataList
+        /// <summary>
+        /// Gets extended response
+        /// list.
+        /// </summary>
+        /// <remarks>This arraylist contains the extend data objects populated
+        /// with the response messages.
+        /// <seealso cref="ExtendData"/>
+        /// </remarks>
+        public ArrayList ExtendDataList
 		{
 			get { return mExtDataList; }
 		}
@@ -365,7 +329,7 @@ namespace PayPal.Payments.DataObjects
 		/// <param name="TrxContext">Transaction Context object</param>
 		public Response(String RequestId, Context TrxContext)
 		{
-			mContext = TrxContext;
+			TransactionContext = TrxContext;
 			//mTransactionResponse = new TransactionResponse(RequestId, ResponseId);\
 			mRequestId = RequestId;
 		}
@@ -433,8 +397,8 @@ namespace PayPal.Payments.DataObjects
 				{
 					String AddlMessage = "Empty response";
 					ErrorObject Err = PayflowUtility.PopulateCommError(PayflowConstants.E_EMPTY_PARAM_LIST, null, PayflowConstants.SEVERITY_WARN, false, AddlMessage);
-					mContext.AddError(Err);
-					Err = mContext.GetError(mContext.getErrorCount() - 1);
+					TransactionContext.AddError(Err);
+					Err = TransactionContext.GetError(TransactionContext.getErrorCount() - 1);
 					String ResponseValue = Err.ToString();
 					this.SetParams(ResponseValue);
 				}
@@ -444,7 +408,7 @@ namespace PayPal.Payments.DataObjects
 			{
 				//ErrorObject Error = PayflowUtility.PopulateCommError(PayflowConstants.E_UNKNOWN_STATE,BaseEx,PayflowConstants.SEVERITY_ERROR,false, null);
 				ErrorObject Error = BaseEx.GetFirstErrorInExceptionContext();
-				mContext.AddError(Error);
+				TransactionContext.AddError(Error);
 				String ResponseValue = Error.ToString();
 				this.SetParams(ResponseValue);
 			}
@@ -452,7 +416,7 @@ namespace PayPal.Payments.DataObjects
 			{
 				DataObjectException DEx = new DataObjectException(Ex);
 				ErrorObject Error = PayflowUtility.PopulateCommError(PayflowConstants.E_UNKNOWN_STATE,DEx,PayflowConstants.SEVERITY_ERROR,false,null);
-				mContext.AddError(Error);
+				TransactionContext.AddError(Error);
 				String ResponseValue = Error.ToString();
 				this.SetParams(ResponseValue);
 			}
@@ -499,8 +463,8 @@ namespace PayPal.Payments.DataObjects
 		{
 			try
 			{
-				mFraudResponse = new FraudResponse();
-				mFraudResponse.SetParams(ref ResponseHashTable);
+				FraudResponse = new FraudResponse();
+				FraudResponse.SetParams(ref ResponseHashTable);
 			}
 			catch (BaseException)
 			{
@@ -525,8 +489,8 @@ namespace PayPal.Payments.DataObjects
 		{
 			try
 			{
-				mRecurringResponse = new RecurringResponse();
-				mRecurringResponse.SetParams(ref ResponseHashTable);
+				RecurringResponse = new RecurringResponse();
+				RecurringResponse.SetParams(ref ResponseHashTable);
 			}
 			catch (BaseException)
 			{
@@ -577,8 +541,8 @@ namespace PayPal.Payments.DataObjects
 		{
 			try
 			{
-				mDoExpressCheckoutPaymentResponse  = new ECDoResponse();
-				mDoExpressCheckoutPaymentResponse.SetParams(ref ResponseHashTable);
+				ExpressCheckoutDoResponse  = new ECDoResponse();
+				ExpressCheckoutDoResponse.SetParams(ref ResponseHashTable);
 			}
 			catch (BaseException)
 			{
@@ -629,8 +593,8 @@ namespace PayPal.Payments.DataObjects
 		{
 			try
 			{
-				mUpdateExpressCheckoutPaymentResponse   = new ECUpdateResponse();
-				mUpdateExpressCheckoutPaymentResponse.SetParams(ref ResponseHashTable);
+				ExpressCheckoutUpdateResponse   = new ECUpdateResponse();
+				ExpressCheckoutUpdateResponse.SetParams(ref ResponseHashTable);
 			}
 			catch (BaseException)
 			{
@@ -745,7 +709,7 @@ namespace PayPal.Payments.DataObjects
 					}
 					if (Name.StartsWith(PayflowConstants.PREFIX_RECURRING_INQUIRY_RESP))
 					{
-						mRecurringResponse.InquiryParams.Add(Name, Value);
+						RecurringResponse.InquiryParams.Add(Name, Value);
 					}
 					else
 					{

@@ -71,17 +71,16 @@ namespace PayPal.Payments.DataObjects
 	/// </example>
 	public sealed class TransactionResponse : BaseResponseDataObject
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Result
-		/// </summary>
-		private int mResult;
+        /// <summary>
+        /// Result
+        /// </summary>
 
-		/// <summary>
-		/// Pnref
-		/// </summary>
-		private String mPnref;
+        /// <summary>
+        /// Pnref
+        /// </summary>
+        private String mPnref;
 
 		/// <summary>
 		/// Resp msg
@@ -350,26 +349,23 @@ namespace PayPal.Payments.DataObjects
 		/// CCTrans_POSData
 		/// </summary>
 		private String mCCTrans_POSData;
- 
-		#endregion
 
-		#region "Properties"
+        #endregion
 
-		/// <summary>
-		/// Gets Result
-		/// </summary>
-		/// <remarks>
-		/// The outcome of the attempted transaction. A
-		/// result of 0 (zero) indicates the transaction was
-		/// approved. Any other number indicates a
-		/// decline or error.
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>RESULT</code>
-		/// </remarks>
-		public int Result
-		{
-			get { return mResult; }
-		}
+        #region "Properties"
+
+        /// <summary>
+        /// Gets Result
+        /// </summary>
+        /// <remarks>
+        /// The outcome of the attempted transaction. A
+        /// result of 0 (zero) indicates the transaction was
+        /// approved. Any other number indicates a
+        /// decline or error.
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>RESULT</code>
+        /// </remarks>
+        public int Result { get; private set; }
 
         /// <summary>
         /// Gets Pnref
@@ -488,7 +484,7 @@ namespace PayPal.Payments.DataObjects
 		/// </item>
 		/// <item>
 		/// <term>X</term>
-		/// <description>The cardholder’s bank does not support this service.</description>
+		/// <description>The cardholderï¿½s bank does not support this service.</description>
 		/// </item>
 		/// </list>
 		/// <para>Maps to Payflow Parameter:</para>
@@ -522,7 +518,7 @@ namespace PayPal.Payments.DataObjects
 		/// </item>
 		/// <item>
 		/// <term>X</term>
-		/// <description>The cardholder’s bank does not support this service.</description>
+		/// <description>The cardholderï¿½s bank does not support this service.</description>
 		/// </item>
 		/// </list>
 		/// <para>Maps to Payflow Parameter:</para>
@@ -556,7 +552,7 @@ namespace PayPal.Payments.DataObjects
 		/// </item>
 		/// <item>
 		/// <term>X</term>
-		/// <description>The cardholder’s bank does not support this service.</description>
+		/// <description>The cardholderï¿½s bank does not support this service.</description>
 		/// </item>
 		/// </list>
 		/// <para>Maps to Payflow Parameter:</para>
@@ -792,7 +788,7 @@ namespace PayPal.Payments.DataObjects
 		/// CVV2 (buyer authentication) response from the processor.
 		/// Its a 3- or 4-digit code that is printed (not imprinted) on
 		/// the back of a credit card. Used as partial assurance
-		/// that the card is in the buyer’s possession.
+		/// that the card is in the buyerï¿½s possession.
 		/// Value obtained when Payflow Verbosity paramter = MEDIUM
 		/// <para>Maps to Payflow Parameter:</para>
 		/// <code>PROCCVV2</code>
@@ -1314,7 +1310,7 @@ namespace PayPal.Payments.DataObjects
 		internal void SetParams(ref Hashtable ResponseHashTable)
 		{
 			//			mResponse = (String) ResponseHashTable[PayflowConstants.INTL_PARAM_FULLRESPONSE];
-			mResult = int.Parse( (String)ResponseHashTable[PayflowConstants.PARAM_RESULT]);
+			Result = int.Parse( (String)ResponseHashTable[PayflowConstants.PARAM_RESULT]);
 			mPnref = (String) ResponseHashTable[PayflowConstants.PARAM_PNREF];
 			mRespMsg = (String) ResponseHashTable[PayflowConstants.PARAM_RESPMSG];
 			mAuthCode = (String) ResponseHashTable[PayflowConstants.PARAM_AUTHCODE];

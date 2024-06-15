@@ -24,8 +24,7 @@ namespace PayPal.Payments.DataObjects
 		private String mNoShipping;
 		private String mAddrOverride;
 		private String mLocalecode;
-		private Currency mMaxAmt;
-		private String mPageStyle;
+        private String mPageStyle;
 		private String mHdrImg ;		//"cpp-headerimage"
 		private String mHdrBorderColor;	//"cpp-header-border-color";
 		private String mHdrBackColor;	//"cpp-header-back-color";
@@ -256,27 +255,23 @@ namespace PayPal.Payments.DataObjects
 			set{mLocalecode = value;}
 		}
 
-		/// <summary>
-		/// Gets or Sets the MaxAmt Parameter.
-		/// </summary>
-		/// <remarks>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>MAXAMT</code>
-		/// </remarks>
-		public Currency MaxAmt
-		{
-			get{return mMaxAmt; }
-			set{mMaxAmt = value;}
-		}
+        /// <summary>
+        /// Gets or Sets the MaxAmt Parameter.
+        /// </summary>
+        /// <remarks>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>MAXAMT</code>
+        /// </remarks>
+        public Currency MaxAmt { get; set; }
 
-		/// <summary>
-		/// Gets or Sets the PageStyle Parameter.
-		/// </summary>
-		/// <remarks>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>PAGESTYLE</code>
-		/// </remarks>
-		public String PageStyle
+        /// <summary>
+        /// Gets or Sets the PageStyle Parameter.
+        /// </summary>
+        /// <remarks>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>PAGESTYLE</code>
+        /// </remarks>
+        public String PageStyle
 		{
 			get{return mPageStyle; }
 			set{mPageStyle = value;}
@@ -435,7 +430,7 @@ namespace PayPal.Payments.DataObjects
 			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_NOSHIPPING, mNoShipping));
 			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ADDROVERRIDE, mAddrOverride));
 			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_LOCALECODE, mLocalecode));
-			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_MAXAMT, mMaxAmt));
+			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_MAXAMT, MaxAmt));
 			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PAGESTYLE, mPageStyle));
 			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_HDRIMG, mHdrImg));
 			RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_HDRBORDERCOLOR, mHdrBorderColor));
