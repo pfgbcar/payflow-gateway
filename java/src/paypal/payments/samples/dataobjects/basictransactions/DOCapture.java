@@ -70,7 +70,7 @@ public class DOCapture {
 		// trans.setcaptureComplete("Y");
 
 		// Submit the Transaction
-		Response resp = trans.submitTransaction();
+		Response resp = trans.submitTransaction("Y");
 
 		// Display the transaction response parameters.
 		if (resp != null) {

@@ -56,7 +56,7 @@ Namespace PayPal.Payments.Samples.VB.DataObjects.Fraud
             Dim Card As CardTender = New CardTender(CC)
             '/////////////////////////////////////////////////////////////////
 
-            ' Create a new Sale Transaction with purchase price ceiling amount filter set to $50.
+            ' Create a new Sale Transaction with purchase price ceiling amount filter set to $500.
             Dim Trans As SaleTransaction = New SaleTransaction(User, Connection, Inv, Card, PayflowUtility.RequestId)
 
             ' Set the Verbosity of the transaction to HIGH to get maximum information in the response.

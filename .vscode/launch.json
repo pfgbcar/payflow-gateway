@@ -1,0 +1,292 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "DOAuth",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOAuth",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOCapture",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOCapture",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOCredit",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOCredit",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOEncryptedSwipe",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOEncryptedSwipe",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOInquiry",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOInquiry",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOPartialAuth",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOPartialAuth",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOReferenceCredit",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOReferenceCredit",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSale",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOSale",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSaleComplete",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOSaleComplete",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSecureTokenAuth",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOSecureTokenAuth",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSwipe",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOSwipe",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOTeleCheck",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOTeleCheck",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOVoiceAuth",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOVoiceAuth",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOVoid",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.basictransactions.DOVoid",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DODoEC",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.expresscheckout.DODoEC",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOGetEC",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.expresscheckout.DOGetEC",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSetEC",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.expresscheckout.DOSetEC",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOUpdateEC",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.expresscheckout.DOUpdateEC",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOFraudFilters",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.fraud.DOFraudFilters",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOFraudReview",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.fraud.DOFraudReview",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOAdditionalHeaders",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DOAdditionalHeaders",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DODataUpload",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DODataUpload",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOInquiry_ACH",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DOInquiry_ACH",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOReference",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DOReference",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSale_ACH",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DOSale_ACH",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOSale_Base",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DOSale_Base",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DOVerbosity",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.misc.DOVerbosity",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurring",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurring",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurringAdd",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurringAdd",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurringCancel",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurringCancel",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurringInquiry",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurringInquiry",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurringModify",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurringModify",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurringPayment",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurringPayment",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "DORecurringReActivate",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.dataobjects.recurring.DORecurringReActivate",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "NVPCommandLine",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.namevaluepairs.NVPCommandLine",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "NVPSale",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.namevaluepairs.NVPSale",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "XMLPayCommandLine",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.xmlpay.XMLPayCommandLine",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "XMLPayCommandLine_File",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.xmlpay.XMLPayCommandLine_File",
+            "projectName": "payflow-gateway_f14ecb2b"
+        },
+        {
+            "type": "java",
+            "name": "XMLPaySale",
+            "request": "launch",
+            "mainClass": "paypal.payments.samples.xmlpay.XMLPaySale",
+            "projectName": "payflow-gateway_f14ecb2b"
+        }
+    ]
+}
