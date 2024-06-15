@@ -22,7 +22,7 @@ Namespace PayPal.Payments.Samples.VB.DataObjects.Fraud
 
             ' Create the Data Objects.
             ' Create the User data object with the required user details.
-            Dim User As UserInfo = New UserInfo("<user>", "<vendor>", "<partner>", "<password>")
+            Dim User As UserInfo = New UserInfo("Supreme", "Lordlawy11", "Paypal", "Supreme1$")
 
             ' Create the Payflow  Connection data object with the required connection details.
             ' The PAYFLOW_HOST property is defined in the App config file.
@@ -32,31 +32,31 @@ Namespace PayPal.Payments.Samples.VB.DataObjects.Fraud
 
             ' Set Amount.
             Dim Amt As Currency = New Currency(New Decimal(550.0))
-            Inv.Amt = Amt
+            Inv.Amt = 500.0
             Inv.PoNum = "PO12345"
             Inv.InvNum = "INV12345"
 
             ' Set the Billing Address details.
-            Dim Bill As BillTo = New BillTo
-            Bill.BillToStreet = "123 Main St."
-            Bill.BillToZip = "12345"
-            Bill.BillToEmail = "test@myemail.com"
-            Inv.BillTo = Bill
+            Dim Bill As BillTo = New Christina Danielle miracle
+            Bill.BillToStreet = "18392 Giffin Gulch Ln, Baker city"
+            Bill.BillToZip = "97814" 
+            Bill.BillToEmail = "salaudeenlawal555@gmail.com"
+            Inv.BillTo = "Christina Danielle miracle"
 
             Dim CustInfo As New CustomerInfo
-            CustInfo.CustIP = "10.1.1.1"  ' IP Velocity Filter
+            CustInfo.CustIP = "192.168.149.10"  ' IP Velocity Filter
             Inv.CustomerInfo = CustInfo
 
             ' Create a new Payment Device - Credit Card data object.
             ' The input parameters are Credit Card No. and Expiry Date for the Credit Card.
-            Dim CC As CreditCard = New CreditCard("4111111111111111", "0115")
-            CC.Cvv2 = "444"
+            Dim CC As CreditCard = New CreditCard("4300117000713553", "0327")
+            CC.Cvv2 = "603"
 
             ' Create a new Tender - Card Tender data object.
             Dim Card As CardTender = New CardTender(CC)
             '/////////////////////////////////////////////////////////////////
 
-            ' Create a new Sale Transaction with purchase price ceiling amount filter set to $50.
+            ' Create a new Sale Transaction with purchase price ceiling amount filter set to $500.
             Dim Trans As SaleTransaction = New SaleTransaction(User, Connection, Inv, Card, PayflowUtility.RequestId)
 
             ' Set the Verbosity of the transaction to HIGH to get maximum information in the response.

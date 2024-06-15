@@ -18,12 +18,6 @@ namespace PayPal.Payments.Common.Utility
     public sealed class PayflowUtility
     {
 
-        /// <summary>
-        /// This is used to check whether constant for 
-        /// TRACE is intialized already or not.
-        /// </summary>
-        private static bool mTraceInitialized = false;
-
         #region "Properties"
 
         /// <summary>
@@ -43,11 +37,7 @@ namespace PayPal.Payments.Common.Utility
         /// <summary>
         /// Gets, sets mTraceInitialized
         /// </summary>
-        internal static bool TraceInitialized
-        {
-            get { return mTraceInitialized; }
-            set { mTraceInitialized = value; }
-        }
+        internal static bool TraceInitialized { get; set; } = false;
 
         #endregion
 
@@ -521,7 +511,7 @@ namespace PayPal.Payments.Common.Utility
         internal static void InitStackTraceOn()
         {
 
-            if (!mTraceInitialized)
+            if (!TraceInitialized)
             {
                 try
                 {
@@ -537,7 +527,7 @@ namespace PayPal.Payments.Common.Utility
                     PayflowConstants.TRACE = PayflowConstants.TRACE_DEFAULT;
                 }
             }
-            mTraceInitialized = true;
+            TraceInitialized = true;
         }
 
         /// <summary>

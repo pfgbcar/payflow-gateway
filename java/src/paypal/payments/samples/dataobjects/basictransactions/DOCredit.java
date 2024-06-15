@@ -18,7 +18,7 @@ public class DOCredit {
 		// For testing: pilot-payflowpro.paypal.com
 		// For production: payflowpro.paypal.com
 		// DO NOT use payflow.verisign.com or test-payflow.verisign.com!
-		SDKProperties.setHostAddress("pilot-payflowpro.paypal.com");
+		SDKProperties.setHostAddress("payflowpro.paypal.com");
 		SDKProperties.setHostPort(443);
 		SDKProperties.setTimeOut(45);
 

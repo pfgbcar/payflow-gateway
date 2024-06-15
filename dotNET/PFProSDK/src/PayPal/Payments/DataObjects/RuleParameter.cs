@@ -12,17 +12,16 @@ namespace PayPal.Payments.DataObjects
 	/// <remarks>Rule parameter are the parameters of each fraud rule.</remarks>
 	public class RuleParameter : BaseResponseDataObject
 	{
-		#region "Member Variables"
+        #region "Member Variables"
 
-		/// <summary>
-		/// Number
-		/// </summary>
-		private int mNum;
+        /// <summary>
+        /// Number
+        /// </summary>
 
-		/// <summary>
-		/// Name
-		/// </summary>
-		private String mName;
+        /// <summary>
+        /// Name
+        /// </summary>
+        private String mName;
 
 		/// <summary>
 		/// Value
@@ -34,25 +33,21 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mType;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets Num
-		/// </summary>
-		/// <remarks>This is the fraud rule parameter number.</remarks>
-		public int Num
-		{
-			get { return mNum; }
-			set { mNum = value; }
-		}
+        /// <summary>
+        /// Gets Num
+        /// </summary>
+        /// <remarks>This is the fraud rule parameter number.</remarks>
+        public int Num { get; set; }
 
-		/// <summary>
-		/// Gets Name
-		/// </summary>
-		/// <remarks>This is the fraud rule parameter name.</remarks>
-		public String Name
+        /// <summary>
+        /// Gets Name
+        /// </summary>
+        /// <remarks>This is the fraud rule parameter name.</remarks>
+        public String Name
 		{
 			get { return mName; }
 			set { mName = value; }

@@ -18,7 +18,7 @@ public class DOCapture {
 		// For testing: pilot-payflowpro.paypal.com
 		// For production: payflowpro.paypal.com
 		// DO NOT use payflow.verisign.com or test-payflow.verisign.com!
-		SDKProperties.setHostAddress("pilot-payflowpro.paypal.com");
+		SDKProperties.setHostAddress("payflowpro.paypal.com");
 		SDKProperties.setHostPort(443);
 		SDKProperties.setTimeOut(45);
 
@@ -34,7 +34,7 @@ public class DOCapture {
 
 		// Create the Data Objects.
 		// Create the User data object with the required user details.
-		UserInfo user = new UserInfo("<user>", "<vendor>", "<partner>", "<password>");
+		UserInfo user = new UserInfo("Supreme", "Lordlawy11", "Paypal", "Supreme1$");
 
 		// Create the Payflow Connection data object with the required connection
 		// details.
@@ -49,8 +49,8 @@ public class DOCapture {
 		// Currency Code USD is US ISO currency code. If no code passed, USD is default.
 		// See the Developer//s Guide for the list of three-character currency codes
 		// available.
-		// Currency amt = new Currency(new Double(25.12));
-		// inv.setAmt(amt);
+		// Currency amt = new Currency(new Double(250.12));
+		// inv.setAmt(500);
 		// CaptureTransaction Trans = new CaptureTransaction("<ORIGINAL_PNREF>", User,
 		// Connection, Inv, PayflowUtility.RequestId);
 
@@ -70,7 +70,7 @@ public class DOCapture {
 		// trans.setcaptureComplete("Y");
 
 		// Submit the Transaction
-		Response resp = trans.submitTransaction();
+		Response resp = trans.submitTransaction("Y");
 
 		// Display the transaction response parameters.
 		if (resp != null) {

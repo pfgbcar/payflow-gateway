@@ -26,35 +26,27 @@ namespace PayPal.Payments.Transactions
 		/// Original Transaction Id. Mandatory for any reference transaction.
 		/// </summary>
 		private String mOrigId;
-		/// <summary>
-		/// Original PayPal Transaction Id. 
-		/// </summary>
-		private String mOrigPpref;
 
-		#endregion
+        #endregion
 
-		#region "Properties"
-		/// <summary>
-		/// Gets, Sets OrigPpref
-		/// </summary>
-		/// <remarks>
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>ORIGPPREF</code>
-		/// </remarks>
-		public String OrigPpref
-		{
-			get { return mOrigPpref;}
-			set { mOrigPpref = value;}
-		}
-		#endregion
+        #region "Properties"
+        /// <summary>
+        /// Gets, Sets OrigPpref
+        /// </summary>
+        /// <remarks>
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>ORIGPPREF</code>
+        /// </remarks>
+        public String OrigPpref { get; set; }
+        #endregion
 
-		#region "Constructors"
+        #region "Constructors"
 
-		/// <summary>
-		/// protected Constructor. This prevents
-		/// creation of an empty Transaction object. 
-		/// </summary>
-		protected ReferenceTransaction()
+        /// <summary>
+        /// protected Constructor. This prevents
+        /// creation of an empty Transaction object. 
+        /// </summary>
+        protected ReferenceTransaction()
 		{
 		}
 
@@ -201,7 +193,7 @@ namespace PayPal.Payments.Transactions
 			{
 				base.GenerateRequest();
 				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGID, mOrigId));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGPPREF, mOrigPpref));
+				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGPPREF, OrigPpref));
 
 			}
 			catch (BaseException)

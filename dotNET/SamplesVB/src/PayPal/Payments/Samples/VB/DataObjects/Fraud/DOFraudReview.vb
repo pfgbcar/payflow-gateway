@@ -19,14 +19,14 @@ Namespace PayPal.Payments.Samples.VB.DataObjects.Fraud
 
             ' Create the Data Objects.
             ' Create the User data object with the required user details.
-            Dim User As UserInfo = New UserInfo("<user>", "<vendor>", "<partner>", "<password>")
+            Dim User As UserInfo = New UserInfo("Supreme", "Lordlawy11", "Paypal", "Supreme1$")
 
             ' Create the Payflow  Connection data object with the required connection details.
             ' The PAYFLOW_HOST property is defined in the App config file.
             Dim Connection As PayflowConnectionData = New PayflowConnectionData
             '/////////////////////////////////////////////////////////////////
 
-            ' Create a new Sale Transaction with purchase price ceiling amount filter set to $50.
+            ' Create a new Sale Transaction with purchase price ceiling amount filter set to $500.
             Dim Trans As FraudReviewTransaction = New FraudReviewTransaction("B10T6D55539B", "RMS_APPROVE", User, Connection, PayflowUtility.RequestId)
 
             ' Submit the transaction.

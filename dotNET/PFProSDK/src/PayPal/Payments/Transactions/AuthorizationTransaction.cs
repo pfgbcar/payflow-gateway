@@ -11,402 +11,391 @@ using PayPal.Payments.Common;
 
 namespace PayPal.Payments.Transactions
 {
-	/// <summary>
-	/// This class is used to create and perform an 
-	/// Authorization Transaction.
-	/// </summary>
-	/// <remarks>A successful authorization needs to be captured using a capture transaction.</remarks>
-	/// <example>This example shows how to create and perform a authorization transaction.
-	/// <code lang="C#" escaped="false">
-	///		..........
-	///		..........
-	///		//Populate required data objects.
-	///		..........
-	///		..........
-	///		
-	///		//Create a new Authorization Transaction.
-	///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
-	///												UserInfo,
-	///												PayflowConnectionData,
-	///												Invoice,
-	///												Tender, 
-	///												RequestId);
-	///		//Submit the transaction.
-	///		Trans.SubmitTransaction();
-	///			
-	///		// Get the Response.
-	///		Response Resp = Trans.Response;
-	///		if (Resp != null)
-	///		{
-	///			// Get the Transaction Response parameters.
-	///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-	///			if (TrxnResponse != null)
-	///			{
-	///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-	///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-	///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-	///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-	///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-	///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-	///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-	///			}
-	///			// Get the Fraud Response parameters.
-	///			FraudResponse FraudResp =  Resp.FraudResponse;
-	///			if (FraudResp != null)
-	///			{
-	///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-	///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-	///			}
-	///		}
-	///		// Get the Context and check for any contained SDK specific errors.
-	///		Context Ctx = Resp.TransactionContext;
-	///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
-	///		{
-	///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-	///		}	
-	///</code>
-	///<code lang="Visual Basic" escaped="false">
-	///		..........
-	///		..........
-	///		'Populate required data objects.
-	///		..........
-	///		..........
-	///		
-	///		'Create a new Authorization Transaction.
-	///		Dim Trans as New AuthorizationTransaction(
-	///												UserInfo,
-	///												PayflowConnectionData,
-	///												Invoice,
-	///												Tender, 
-	///												RequestId)
-	///		' Submit the transaction.
-	///		Trans.SubmitTransaction()
-	///
-	///		' Get the Response.
-	///		Dim Resp As Response = Trans.Response
-	///		
-	///		If Not Resp Is Nothing Then
-	///		' Get the Transaction Response parameters.
-	///		
-	///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-	///			
-	///			If Not TrxnResponse Is Nothing Then
-	///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-	///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-	///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-	///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-	///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-	///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-	///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-	///			End If
-	///
-	///			' Get the Fraud Response parameters.
-	///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-	///			If Not FraudResp Is Nothing Then
-	///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-	///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-	///			End If
-	///		End If
-	///
-	///		' Get the Context and check for any contained SDK specific errors.
-	///		Dim Ctx As Context = Resp.TransactionContext
-	///		
-	///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-	///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-	///		End If												
-	/// </code>
-	/// </example>
-	public class AuthorizationTransaction : BaseTransaction
-	{
-		#region "Member Variables"
+    /// <summary>
+    /// This class is used to create and perform an 
+    /// Authorization Transaction.
+    /// </summary>
+    /// <remarks>A successful authorization needs to be captured using a capture transaction.</remarks>
+    /// <example>This example shows how to create and perform a authorization transaction.
+    /// <code lang="C#" escaped="false">
+    ///		..........
+    ///		..........
+    ///		//Populate required data objects.
+    ///		..........
+    ///		..........
+    ///		
+    ///		//Create a new Authorization Transaction.
+    ///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
+    ///												UserInfo,
+    ///												PayflowConnectionData,
+    ///												Invoice,
+    ///												Tender, 
+    ///												RequestId);
+    ///		//Submit the transaction.
+    ///		Trans.SubmitTransaction();
+    ///			
+    ///		// Get the Response.
+    ///		Response Resp = Trans.Response;
+    ///		if (Resp != null)
+    ///		{
+    ///			// Get the Transaction Response parameters.
+    ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+    ///			if (TrxnResponse != null)
+    ///			{
+    ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+    ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+    ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+    ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+    ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+    ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+    ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+    ///			}
+    ///			// Get the Fraud Response parameters.
+    ///			FraudResponse FraudResp =  Resp.FraudResponse;
+    ///			if (FraudResp != null)
+    ///			{
+    ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+    ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+    ///			}
+    ///		}
+    ///		// Get the Context and check for any contained SDK specific errors.
+    ///		Context Ctx = Resp.TransactionContext;
+    ///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
+    ///		{
+    ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+    ///		}	
+    ///</code>
+    ///<code lang="Visual Basic" escaped="false">
+    ///		..........
+    ///		..........
+    ///		'Populate required data objects.
+    ///		..........
+    ///		..........
+    ///		
+    ///		'Create a new Authorization Transaction.
+    ///		Dim Trans as New AuthorizationTransaction(
+    ///												UserInfo,
+    ///												PayflowConnectionData,
+    ///												Invoice,
+    ///												Tender, 
+    ///												RequestId)
+    ///		' Submit the transaction.
+    ///		Trans.SubmitTransaction()
+    ///
+    ///		' Get the Response.
+    ///		Dim Resp As Response = Trans.Response
+    ///		
+    ///		If Not Resp Is Nothing Then
+    ///		' Get the Transaction Response parameters.
+    ///		
+    ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+    ///			
+    ///			If Not TrxnResponse Is Nothing Then
+    ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+    ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+    ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+    ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+    ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+    ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+    ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+    ///			End If
+    ///
+    ///			' Get the Fraud Response parameters.
+    ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+    ///			If Not FraudResp Is Nothing Then
+    ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+    ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+    ///			End If
+    ///		End If
+    ///
+    ///		' Get the Context and check for any contained SDK specific errors.
+    ///		Dim Ctx As Context = Resp.TransactionContext
+    ///		
+    ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+    ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+    ///		End If												
+    /// </code>
+    /// </example>
+    public class AuthorizationTransaction : BaseTransaction
+    {
+        #region "Member Variables"
 
-		/// <summary>
-		/// Original transaction id.
-		/// The ORIGID is the PNREF no. from a previous transaction.
-		/// OrigId is used to create a new Authorization transaction using the details of a previous
-		/// transaction.
-		/// </summary>
-		private String mOrigId;
+        /// <summary>
+        /// Original transaction id.
+        /// The ORIGID is the PNREF no. from a previous transaction.
+        /// OrigId is used to create a new Authorization transaction using the details of a previous
+        /// transaction.
+        /// </summary>
 
-		/// <summary>
-		/// Partial authorization request.
-		/// Notifies processor that partial authorizations are supported.
-		/// </summary>
-		private String mPartialAuth;
+        /// <summary>
+        /// Partial authorization request.
+        /// Notifies processor that partial authorizations are supported.
+        /// </summary>
+        private String mPartialAuth;
 
-		/// <summary>
-		/// Secure token request.
-		/// Used to store sensitive data prior to making a call to the hosted page.
-		/// </summary>
-		private String mCreateSecureToken;
-
-		/// <summary>
-		/// Secure token id.
-		/// Id used to generate a secure token.  Must be sent with the token when calling the hosted pages.
-		/// This can be any random GUID but must be unique.
-		/// </summary>
-		private String mSecureTokenId;
+        /// <summary>
+        /// Secure token id.
+        /// Id used to generate a secure token.  Must be sent with the token when calling the hosted pages.
+        /// This can be any random GUID but must be unique.
+        /// </summary>
+        private String mSecureTokenId;
 
 
-		#endregion
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
-		/// Gets, Sets OrigId. This property is used to perform a reference Authorization Transaction.
-		/// </summary>
-		/// <remarks>A reference Authorization transaction is an authorization transaction which copies the transaction data,
-		///  except the Account Number, Expiration Date and Swipe data from a previous trasnaction.
-		///  PNRef of this previous trasnaction needs to be set in this OrigId property.</remarks>
-		/// <remarks>A successful authorization needs to be captured using a capture transaction.</remarks>
-		/// <example>This example shows how to create and perform a reference authorization transaction.
-		/// <code lang="C#" escaped="false">
-		///		..........
-		///		..........
-		///		//Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		//Create a new Authorization Transaction.
-		///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId);
-		///		// Set the OrigId to refer to 
-		///		// a previous trasncation.
-		///		Trans.OrigId = "V64A0A07BD24";
-		///		
-		///		//Submit the transaction.
-		///		Trans.SubmitTransaction();
-		///			
-		///		// Get the Response.
-		///		Response Resp = Trans.Response;
-		///		if (Resp != null)
-		///		{
-		///			// Get the Transaction Response parameters.
-		///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-		///			if (TrxnResponse != null)
-		///			{
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-		///			}
-		///			// Get the Fraud Response parameters.
-		///			FraudResponse FraudResp =  Resp.FraudResponse;
-		///			if (FraudResp != null)
-		///			{
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-		///			}
-		///		}
-		///		// Get the Context and check for any contained SDK specific errors.
-		///		Context Ctx = Resp.TransactionContext;
-		///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
-		///		{
-		///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-		///		}	
-		///</code>
-		///<code lang="Visual Basic" escaped="false">
-		///		..........
-		///		..........
-		///		'Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		'Create a new Authorization Transaction.
-		///		Dim Trans as New AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId)
-		///		' Set the OrigId to refer to 
-		///		' a previous trasncation.
-		///		Trans.OrigId = "V64A0A07BD24"
-		///		
-		///		' Submit the transaction.
-		///		Trans.SubmitTransaction()
-		///
-		///		' Get the Response.
-		///		Dim Resp As Response = Trans.Response
-		///		
-		///		If Not Resp Is Nothing Then
-		///		' Get the Transaction Response parameters.
-		///		
-		///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-		///			
-		///			If Not TrxnResponse Is Nothing Then
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-		///			End If
-		///
-		///			' Get the Fraud Response parameters.
-		///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-		///			If Not FraudResp Is Nothing Then
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-		///			End If
-		///		End If
-		///
-		///		' Get the Context and check for any contained SDK specific errors.
-		///		Dim Ctx As Context = Resp.TransactionContext
-		///		
-		///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-		///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-		///		End If												
-		/// </code>
-		/// </example>
-		public String OrigId
-		{
-			get { return mOrigId; }
-			set { mOrigId = value; }
-		}
-		#endregion
+        /// <summary>
+        /// Gets, Sets OrigId. This property is used to perform a reference Authorization Transaction.
+        /// </summary>
+        /// <remarks>A reference Authorization transaction is an authorization transaction which copies the transaction data,
+        ///  except the Account Number, Expiration Date and Swipe data from a previous trasnaction.
+        ///  PNRef of this previous trasnaction needs to be set in this OrigId property.</remarks>
+        /// <remarks>A successful authorization needs to be captured using a capture transaction.</remarks>
+        /// <example>This example shows how to create and perform a reference authorization transaction.
+        /// <code lang="C#" escaped="false">
+        ///		..........
+        ///		..........
+        ///		//Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		//Create a new Authorization Transaction.
+        ///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId);
+        ///		// Set the OrigId to refer to 
+        ///		// a previous trasncation.
+        ///		Trans.OrigId = "V64A0A07BD24";
+        ///		
+        ///		//Submit the transaction.
+        ///		Trans.SubmitTransaction();
+        ///			
+        ///		// Get the Response.
+        ///		Response Resp = Trans.Response;
+        ///		if (Resp != null)
+        ///		{
+        ///			// Get the Transaction Response parameters.
+        ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+        ///			if (TrxnResponse != null)
+        ///			{
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+        ///			}
+        ///			// Get the Fraud Response parameters.
+        ///			FraudResponse FraudResp =  Resp.FraudResponse;
+        ///			if (FraudResp != null)
+        ///			{
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+        ///			}
+        ///		}
+        ///		// Get the Context and check for any contained SDK specific errors.
+        ///		Context Ctx = Resp.TransactionContext;
+        ///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
+        ///		{
+        ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+        ///		}	
+        ///</code>
+        ///<code lang="Visual Basic" escaped="false">
+        ///		..........
+        ///		..........
+        ///		'Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		'Create a new Authorization Transaction.
+        ///		Dim Trans as New AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId)
+        ///		' Set the OrigId to refer to 
+        ///		' a previous trasncation.
+        ///		Trans.OrigId = "V64A0A07BD24"
+        ///		
+        ///		' Submit the transaction.
+        ///		Trans.SubmitTransaction()
+        ///
+        ///		' Get the Response.
+        ///		Dim Resp As Response = Trans.Response
+        ///		
+        ///		If Not Resp Is Nothing Then
+        ///		' Get the Transaction Response parameters.
+        ///		
+        ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+        ///			
+        ///			If Not TrxnResponse Is Nothing Then
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+        ///			End If
+        ///
+        ///			' Get the Fraud Response parameters.
+        ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+        ///			If Not FraudResp Is Nothing Then
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+        ///			End If
+        ///		End If
+        ///
+        ///		' Get the Context and check for any contained SDK specific errors.
+        ///		Dim Ctx As Context = Resp.TransactionContext
+        ///		
+        ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+        ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+        ///		End If												
+        /// </code>
+        /// </example>
+        public String OrigId { get; set; }
+        #endregion
 
-		#region "Properties"
+        #region "Properties"
 
-		/// <summary>
+        /// <summary>
         /// Gets, Sets PartialAuth. This property is used to notify banks that a partial authorization can be performed for a pre-paid debit/gift card.
-		/// </summary>
-		/// <remarks>Partial Approval is supported for Visa, MasterCard, American Express and Discover (JCB (US Domestic only), 
-		/// and Diners) Prepaid card products such as gift, Flexible Spending Account (FSA) or Healthcare Reimbursement Account 
-		/// (HRA) cards. In addition Discover (JCB (US Domestic only), and Diners) supports partial Approval on their consumer 
-		/// credit card. It is often difficult for the consumer to spend the exact amount available on the prepaid account, as 
-		/// the purchase can be for amounts greater than the value available. This can result in unnecessary declines. Visa, 
-		/// MasterCard, American Express and Discover (JCB (US Domestic only), and Diners) recognize that the prepaid products 
-		/// represent unique opportunities for both merchants and consumers. With Partial Approval issuers may approve a portion 
-		/// of the amount requested. This will enable the residual transaction amount to be paid by other means. The introduction 
-		/// of the partial approval capability will reduce decline frequency and enhance the consumer and merchant experience at 
-		/// the point of sale. Merchants will now have the ability to accept partial approval rather than having the sale declined. </remarks>
-		/// <example>This example shows how to submit the Partial Authorization flag.
-		/// <code lang="C#" escaped="false">
-		///		..........
-		///		..........
-		///		//Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		//Create a new Authorization Transaction.
-		///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId);
-		///		// Set the flag to allow partial authorizations.
-		///		Trans.PartialAuth = "Y";
-		///		
-		///		//Submit the transaction.
-		///		Trans.SubmitTransaction();
-		///			
-		///		// Get the Response.
-		///		Response Resp = Trans.Response;
-		///		if (Resp != null)
-		///		{
-		///			// Get the Transaction Response parameters.
-		///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-		///			if (TrxnResponse != null)
-		///			{
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-		///			}
-		///			// Get the Fraud Response parameters.
-		///			FraudResponse FraudResp =  Resp.FraudResponse;
-		///			if (FraudResp != null)
-		///			{
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-		///			}
-		///		}
-		///		// Get the Context and check for any contained SDK specific errors.
-		///		Context Ctx = Resp.TransactionContext;
-		///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
-		///		{
-		///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-		///		}	
-		///</code>
-		///<code lang="Visual Basic" escaped="false">
-		///		..........
-		///		..........
-		///		'Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		'Create a new Authorization Transaction.
-		///		Dim Trans as New AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId)
-		///		'Set the flag to allow partial authorizations.
-		///		Trans.PartialAuth = "Y"
-		///		
-		///		' Submit the transaction.
-		///		Trans.SubmitTransaction()
-		///
-		///		' Get the Response.
-		///		Dim Resp As Response = Trans.Response
-		///		
-		///		If Not Resp Is Nothing Then
-		///		' Get the Transaction Response parameters.
-		///		
-		///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-		///			
-		///			If Not TrxnResponse Is Nothing Then
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-		///			End If
-		///
-		///			' Get the Fraud Response parameters.
-		///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-		///			If Not FraudResp Is Nothing Then
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-		///			End If
-		///		End If
-		///
-		///		' Get the Context and check for any contained SDK specific errors.
-		///		Dim Ctx As Context = Resp.TransactionContext
-		///		
-		///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-		///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-		///		End If												
-		/// </code>
-		/// </example>
-		public String PartialAuth
-		{
-			get { return mPartialAuth; }
-			set { mPartialAuth = value; }
-		}
+        /// </summary>
+        /// <remarks>Partial Approval is supported for Visa, MasterCard, American Express and Discover (JCB (US Domestic only), 
+        /// and Diners) Prepaid card products such as gift, Flexible Spending Account (FSA) or Healthcare Reimbursement Account 
+        /// (HRA) cards. In addition Discover (JCB (US Domestic only), and Diners) supports partial Approval on their consumer 
+        /// credit card. It is often difficult for the consumer to spend the exact amount available on the prepaid account, as 
+        /// the purchase can be for amounts greater than the value available. This can result in unnecessary declines. Visa, 
+        /// MasterCard, American Express and Discover (JCB (US Domestic only), and Diners) recognize that the prepaid products 
+        /// represent unique opportunities for both merchants and consumers. With Partial Approval issuers may approve a portion 
+        /// of the amount requested. This will enable the residual transaction amount to be paid by other means. The introduction 
+        /// of the partial approval capability will reduce decline frequency and enhance the consumer and merchant experience at 
+        /// the point of sale. Merchants will now have the ability to accept partial approval rather than having the sale declined. </remarks>
+        /// <example>This example shows how to submit the Partial Authorization flag.
+        /// <code lang="C#" escaped="false">
+        ///		..........
+        ///		..........
+        ///		//Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		//Create a new Authorization Transaction.
+        ///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId);
+        ///		// Set the flag to allow partial authorizations.
+        ///		Trans.PartialAuth = "Y";
+        ///		
+        ///		//Submit the transaction.
+        ///		Trans.SubmitTransaction();
+        ///			
+        ///		// Get the Response.
+        ///		Response Resp = Trans.Response;
+        ///		if (Resp != null)
+        ///		{
+        ///			// Get the Transaction Response parameters.
+        ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+        ///			if (TrxnResponse != null)
+        ///			{
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+        ///			}
+        ///			// Get the Fraud Response parameters.
+        ///			FraudResponse FraudResp =  Resp.FraudResponse;
+        ///			if (FraudResp != null)
+        ///			{
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+        ///			}
+        ///		}
+        ///		// Get the Context and check for any contained SDK specific errors.
+        ///		Context Ctx = Resp.TransactionContext;
+        ///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
+        ///		{
+        ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+        ///		}	
+        ///</code>
+        ///<code lang="Visual Basic" escaped="false">
+        ///		..........
+        ///		..........
+        ///		'Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		'Create a new Authorization Transaction.
+        ///		Dim Trans as New AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId)
+        ///		'Set the flag to allow partial authorizations.
+        ///		Trans.PartialAuth = "Y"
+        ///		
+        ///		' Submit the transaction.
+        ///		Trans.SubmitTransaction()
+        ///
+        ///		' Get the Response.
+        ///		Dim Resp As Response = Trans.Response
+        ///		
+        ///		If Not Resp Is Nothing Then
+        ///		' Get the Transaction Response parameters.
+        ///		
+        ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+        ///			
+        ///			If Not TrxnResponse Is Nothing Then
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+        ///			End If
+        ///
+        ///			' Get the Fraud Response parameters.
+        ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+        ///			If Not FraudResp Is Nothing Then
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+        ///			End If
+        ///		End If
+        ///
+        ///		' Get the Context and check for any contained SDK specific errors.
+        ///		Dim Ctx As Context = Resp.TransactionContext
+        ///		
+        ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+        ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+        ///		End If												
+        /// </code>
+        /// </example>
+        public String PartialAuth
+        {
+            get { return mPartialAuth; }
+            set { mPartialAuth = value; }
+        }
 
         #endregion
 
         #region "Properties"
 
         /// <remarks>Use a secure token to send non-credit card transaction data to the Payflow server for storage in
-        /// a way that can’t be intercepted and manipulated maliciously.The secure token must be used with the hosted 
+        /// a way that canï¿½t be intercepted and manipulated maliciously.The secure token must be used with the hosted 
         /// checkout pages. The token is good for a one-time transaction and is valid for 30 minutes.
         /// 
         /// NOTE: Without using a secure token, Payflow Pro merchants can host their own payment page and Payflow Link merchants 
@@ -531,442 +520,442 @@ namespace PayPal.Payments.Transactions
         /// <summary>
         /// Gets, Sets CreateSecureToken. This property is used to create a SecureToken.
         /// </summary>
-        public String CreateSecureToken
-		{
-			get { return mCreateSecureToken; }
-			set { mCreateSecureToken = value; }
-		}
+        public String CreateSecureToken { get; set; }
 
         /// <summary>
         /// Gets, Sets SecureTokenId. This property is used while calling the hosted page.
         /// </summary>
         public String SecureTokenId
-		{
-			get { return mSecureTokenId; }
-			set { mSecureTokenId = value; }
-		}
+        {
+            get { return mSecureTokenId; }
+            set { mSecureTokenId = value; }
+        }
 
-		#endregion
+        #endregion
 
-		#region "Constructors"
+        #region "Constructors"
 
-		/// <summary>
-		/// Private Constructor. This prevents
-		/// creation of an empty Transaction object. 
-		/// </summary>
-		private AuthorizationTransaction()
-		{}
+        /// <summary>
+        /// Private Constructor. This prevents
+        /// creation of an empty Transaction object. 
+        /// </summary>
+        private AuthorizationTransaction()
+        { }
 
-		/// <summary>
-		/// Constructor. 
-		/// </summary>
-		/// <param name="UserInfo">User Info object populated with user credentials.</param>
-		/// <param name="PayflowConnectionData">Connection credentials object.</param>
-		/// <param name="Invoice">Invoice object.</param>
-		/// <param name="Tender">Tender object </param>
-		/// <param name="RequestId">Request Id</param>
-		/// <example>This example shows how to create and perform a authorization transaction.
-		/// <code lang="C#" escaped="false">
-		///		..........
-		///		..........
-		///		//Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		//Create a new Authorization Transaction.
-		///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId);
-		///		//Submit the transaction.
-		///		Trans.SubmitTransaction();
-		///			
-		///		// Get the Response.
-		///		Response Resp = Trans.Response;
-		///		if (Resp != null)
-		///		{
-		///			// Get the Transaction Response parameters.
-		///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-		///			if (TrxnResponse != null)
-		///			{
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-		///			}
-		///			// Get the Fraud Response parameters.
-		///			FraudResponse FraudResp =  Resp.FraudResponse;
-		///			if (FraudResp != null)
-		///			{
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-		///			}
-		///		}
-		///		// Get the Context and check for any contained SDK specific errors.
-		///		Context Ctx = Resp.TransactionContext;
-		///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
-		///		{
-		///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-		///		}	
-		///</code>
-		///<code lang="Visual Basic" escaped="false">
-		///		..........
-		///		..........
-		///		'Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		'Create a new Authorization Transaction.
-		///		Dim Trans as New AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId)
-		///		' Submit the transaction.
-		///		Trans.SubmitTransaction()
-		///
-		///		' Get the Response.
-		///		Dim Resp As Response = Trans.Response
-		///		
-		///		If Not Resp Is Nothing Then
-		///		' Get the Transaction Response parameters.
-		///		
-		///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-		///			
-		///			If Not TrxnResponse Is Nothing Then
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-		///			End If
-		///
-		///			' Get the Fraud Response parameters.
-		///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-		///			If Not FraudResp Is Nothing Then
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-		///			End If
-		///		End If
-		///
-		///		' Get the Context and check for any contained SDK specific errors.
-		///		Dim Ctx As Context = Resp.TransactionContext
-		///		
-		///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-		///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-		///		End If												
-		/// </code>
-		/// </example>
-		public AuthorizationTransaction(UserInfo UserInfo, PayflowConnectionData PayflowConnectionData,
-		                                Invoice Invoice,
-		                                BaseTender Tender, String RequestId)
-			: base(PayflowConstants.TRXTYPE_AUTH, UserInfo, PayflowConnectionData,
-			       Invoice,
-			       //PaymentDevice ,
-			       Tender, RequestId)
-		{
-		}
+        /// <summary>
+        /// Constructor. 
+        /// </summary>
+        /// <param name="UserInfo">User Info object populated with user credentials.</param>
+        /// <param name="PayflowConnectionData">Connection credentials object.</param>
+        /// <param name="Invoice">Invoice object.</param>
+        /// <param name="Tender">Tender object </param>
+        /// <param name="RequestId">Request Id</param>
+        /// <example>This example shows how to create and perform a authorization transaction.
+        /// <code lang="C#" escaped="false">
+        ///		..........
+        ///		..........
+        ///		//Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		//Create a new Authorization Transaction.
+        ///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId);
+        ///		//Submit the transaction.
+        ///		Trans.SubmitTransaction();
+        ///			
+        ///		// Get the Response.
+        ///		Response Resp = Trans.Response;
+        ///		if (Resp != null)
+        ///		{
+        ///			// Get the Transaction Response parameters.
+        ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+        ///			if (TrxnResponse != null)
+        ///			{
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+        ///			}
+        ///			// Get the Fraud Response parameters.
+        ///			FraudResponse FraudResp =  Resp.FraudResponse;
+        ///			if (FraudResp != null)
+        ///			{
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+        ///			}
+        ///		}
+        ///		// Get the Context and check for any contained SDK specific errors.
+        ///		Context Ctx = Resp.TransactionContext;
+        ///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
+        ///		{
+        ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+        ///		}	
+        ///</code>
+        ///<code lang="Visual Basic" escaped="false">
+        ///		..........
+        ///		..........
+        ///		'Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		'Create a new Authorization Transaction.
+        ///		Dim Trans as New AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId)
+        ///		' Submit the transaction.
+        ///		Trans.SubmitTransaction()
+        ///
+        ///		' Get the Response.
+        ///		Dim Resp As Response = Trans.Response
+        ///		
+        ///		If Not Resp Is Nothing Then
+        ///		' Get the Transaction Response parameters.
+        ///		
+        ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+        ///			
+        ///			If Not TrxnResponse Is Nothing Then
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+        ///			End If
+        ///
+        ///			' Get the Fraud Response parameters.
+        ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+        ///			If Not FraudResp Is Nothing Then
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+        ///			End If
+        ///		End If
+        ///
+        ///		' Get the Context and check for any contained SDK specific errors.
+        ///		Dim Ctx As Context = Resp.TransactionContext
+        ///		
+        ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+        ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+        ///		End If												
+        /// </code>
+        /// </example>
+        public AuthorizationTransaction(UserInfo UserInfo, PayflowConnectionData PayflowConnectionData,
+                                        Invoice Invoice,
+                                        BaseTender Tender, String RequestId)
+            : base(PayflowConstants.TRXTYPE_AUTH, UserInfo, PayflowConnectionData,
+                   Invoice,
+                   //PaymentDevice ,
+                   Tender, RequestId)
+        {
+        }
 
-		/// <summary>
-		/// Constructor. 
-		/// </summary>
-		/// <param name="UserInfo">User Info object populated with user credentials.</param>
-		/// <param name="PayflowConnectionData">Connection credentials object.</param>
-		/// <param name="Invoice">Invoice object.</param>
-		/// <param name="RequestId">Request Id</param>
-		/// <example>This example shows how to create and perform a authorization transaction.
-		/// <code lang="C#" escaped="false">
-		///		..........
-		///		..........
-		///		//Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		//Create a new Authorization Transaction.
-		///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												RequestId);
-		///		//Submit the transaction.
-		///		Trans.SubmitTransaction();
-		///			
-		///		// Get the Response.
-		///		Response Resp = Trans.Response;
-		///		if (Resp != null)
-		///		{
-		///			// Get the Transaction Response parameters.
-		///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-		///			if (TrxnResponse != null)
-		///			{
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-		///			}
-		///			// Get the Fraud Response parameters.
-		///			FraudResponse FraudResp =  Resp.FraudResponse;
-		///			if (FraudResp != null)
-		///			{
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-		///			}
-		///		}
-		///		// Get the Context and check for any contained SDK specific errors.
-		///		Context Ctx = Resp.TransactionContext;
-		///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
-		///		{
-		///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-		///		}	
-		///</code>
-		///<code lang="Visual Basic" escaped="false">
-		///		..........
-		///		..........
-		///		'Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		'Create a new Authorization Transaction.
-		///		Dim Trans as New AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												RequestId)
-		///		' Submit the transaction.
-		///		Trans.SubmitTransaction()
-		///
-		///		' Get the Response.
-		///		Dim Resp As Response = Trans.Response
-		///		
-		///		If Not Resp Is Nothing Then
-		///		' Get the Transaction Response parameters.
-		///		
-		///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-		///			
-		///			If Not TrxnResponse Is Nothing Then
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-		///			End If
-		///
-		///			' Get the Fraud Response parameters.
-		///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-		///			If Not FraudResp Is Nothing Then
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-		///			End If
-		///		End If
-		///
-		///		' Get the Context and check for any contained SDK specific errors.
-		///		Dim Ctx As Context = Resp.TransactionContext
-		///		
-		///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-		///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-		///		End If												
-		/// </code>
-		/// </example>
-		public AuthorizationTransaction(UserInfo UserInfo, PayflowConnectionData PayflowConnectionData,
-			Invoice Invoice, String RequestId)
-			: base(PayflowConstants.TRXTYPE_AUTH, UserInfo, PayflowConnectionData,
-			Invoice, RequestId)
-		{
-		}
-		
-		/// <summary>
-		/// Constructor. 
-		/// </summary>
-		/// <param name="UserInfo">User Info object populated with user credentials.</param>
-		/// <param name="Invoice">Invoice object.</param>
-		/// <param name="Tender">Tender object </param>
-		/// <param name="RequestId">Request Id</param>
-		/// <example>This example shows how to create and perform
-		/// a authorization transaction.
-		///<code lang="C#" escaped="false">
-		///		..........
-		///		..........
-		///		//Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		// Create a new Authorization Transaction.
-		///		AuthorizationTransaction Trans = new AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId);
-		///		//Submit the transaction.
-		///		Trans.SubmitTransaction();
-		///			
-		///		// Get the Response.
-		///		Response Resp = Trans.Response;
-		///		if (Resp != null)
-		///		{
-		///			// Get the Transaction Response parameters.
-		///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
-		///			if (TrxnResponse != null)
-		///			{
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
-		///			}
-		///			// Get the Fraud Response parameters.
-		///			FraudResponse FraudResp =  Resp.FraudResponse;
-		///			if (FraudResp != null)
-		///			{
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
-		///			}
-		///		}
-		///		// Get the Context and check for any contained SDK specific errors.
-		///		Context Ctx = Resp.TransactionContext;
-		///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
-		///		{
-		///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
-		///		}	
-		///</code>
-		///<code lang="Visual Basic" escaped="false">
-		///		..........
-		///		..........
-		///		'Populate required data objects.
-		///		..........
-		///		..........
-		///		
-		///		'Create a new Authorization Transaction.
-		///		Dim Trans as New AuthorizationTransaction(
-		///												UserInfo,
-		///												PayflowConnectionData,
-		///												Invoice,
-		///												Tender, 
-		///												RequestId)
-		///		' Submit the transaction.
-		///		Trans.SubmitTransaction()
-		///
-		///		' Get the Response.
-		///		Dim Resp As Response = Trans.Response
-		///		
-		///		If Not Resp Is Nothing Then
-		///		' Get the Transaction Response parameters.
-		///		
-		///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
-		///			
-		///			If Not TrxnResponse Is Nothing Then
-		///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
-		///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
-		///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
-		///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
-		///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
-		///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
-		///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
-		///			End If
-		///
-		///			' Get the Fraud Response parameters.
-		///			Dim FraudResp As FraudResponse = Resp.FraudResponse
-		///			If Not FraudResp Is Nothing Then
-		///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
-		///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
-		///			End If
-		///		End If
-		///
-		///		' Get the Context and check for any contained SDK specific errors.
-		///		Dim Ctx As Context = Resp.TransactionContext
-		///		
-		///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
-		///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
-		///		End If												
-		/// </code>
-		/// </example>
-		public AuthorizationTransaction(UserInfo UserInfo, Invoice Invoice,
-			BaseTender Tender, String RequestId)
-			: this(UserInfo, null,Invoice,Tender, RequestId)
-		{
-		}
+        /// <summary>
+        /// Constructor. 
+        /// </summary>
+        /// <param name="UserInfo">User Info object populated with user credentials.</param>
+        /// <param name="PayflowConnectionData">Connection credentials object.</param>
+        /// <param name="Invoice">Invoice object.</param>
+        /// <param name="RequestId">Request Id</param>
+        /// <example>This example shows how to create and perform a authorization transaction.
+        /// <code lang="C#" escaped="false">
+        ///		..........
+        ///		..........
+        ///		//Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		//Create a new Authorization Transaction.
+        ///		 AuthorizationTransaction Trans = new AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												RequestId);
+        ///		//Submit the transaction.
+        ///		Trans.SubmitTransaction();
+        ///			
+        ///		// Get the Response.
+        ///		Response Resp = Trans.Response;
+        ///		if (Resp != null)
+        ///		{
+        ///			// Get the Transaction Response parameters.
+        ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+        ///			if (TrxnResponse != null)
+        ///			{
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+        ///			}
+        ///			// Get the Fraud Response parameters.
+        ///			FraudResponse FraudResp =  Resp.FraudResponse;
+        ///			if (FraudResp != null)
+        ///			{
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+        ///			}
+        ///		}
+        ///		// Get the Context and check for any contained SDK specific errors.
+        ///		Context Ctx = Resp.TransactionContext;
+        ///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
+        ///		{
+        ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+        ///		}	
+        ///</code>
+        ///<code lang="Visual Basic" escaped="false">
+        ///		..........
+        ///		..........
+        ///		'Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		'Create a new Authorization Transaction.
+        ///		Dim Trans as New AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												RequestId)
+        ///		' Submit the transaction.
+        ///		Trans.SubmitTransaction()
+        ///
+        ///		' Get the Response.
+        ///		Dim Resp As Response = Trans.Response
+        ///		
+        ///		If Not Resp Is Nothing Then
+        ///		' Get the Transaction Response parameters.
+        ///		
+        ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+        ///			
+        ///			If Not TrxnResponse Is Nothing Then
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+        ///			End If
+        ///
+        ///			' Get the Fraud Response parameters.
+        ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+        ///			If Not FraudResp Is Nothing Then
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+        ///			End If
+        ///		End If
+        ///
+        ///		' Get the Context and check for any contained SDK specific errors.
+        ///		Dim Ctx As Context = Resp.TransactionContext
+        ///		
+        ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+        ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+        ///		End If												
+        /// </code>
+        /// </example>
+        public AuthorizationTransaction(UserInfo UserInfo, PayflowConnectionData PayflowConnectionData,
+            Invoice Invoice, String RequestId)
+            : base(PayflowConstants.TRXTYPE_AUTH, UserInfo, PayflowConnectionData,
+            Invoice, RequestId)
+        {
+        }
 
-		//constructor to be used in case of basic and order auth
-			/// <summary>
-			/// 
-			/// </summary>
-			/// <param name="TrxType"></param>
-			/// <param name="UserInfo"></param>
-			/// <param name="PayflowConnectionData"></param>
-			/// <param name="Invoice"></param>
-			/// <param name="Tender"></param>
-			/// <param name="RequestId"></param>
-		internal AuthorizationTransaction(String TrxType , UserInfo UserInfo, PayflowConnectionData PayflowConnectionData,
-			Invoice Invoice,
-			BaseTender Tender, String RequestId)
-			: base(TrxType, UserInfo, PayflowConnectionData,
-			Invoice,
-			//PaymentDevice ,
-			Tender, RequestId)
-		{
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="TrxType"></param>
-		/// <param name="UserInfo"></param>
-		/// <param name="Invoice"></param>
-		/// <param name="Tender"></param>
-		/// <param name="RequestId"></param>
-		internal AuthorizationTransaction(String TrxType ,UserInfo UserInfo, Invoice Invoice,
-			BaseTender Tender, String RequestId)
-			: this(TrxType ,UserInfo, null,Invoice,Tender, RequestId)
-		{
-		}
+        /// <summary>
+        /// Constructor. 
+        /// </summary>
+        /// <param name="UserInfo">User Info object populated with user credentials.</param>
+        /// <param name="Invoice">Invoice object.</param>
+        /// <param name="Tender">Tender object </param>
+        /// <param name="RequestId">Request Id</param>
+        /// <example>This example shows how to create and perform
+        /// a authorization transaction.
+        ///<code lang="C#" escaped="false">
+        ///		..........
+        ///		..........
+        ///		//Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		// Create a new Authorization Transaction.
+        ///		AuthorizationTransaction Trans = new AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId);
+        ///		//Submit the transaction.
+        ///		Trans.SubmitTransaction();
+        ///			
+        ///		// Get the Response.
+        ///		Response Resp = Trans.Response;
+        ///		if (Resp != null)
+        ///		{
+        ///			// Get the Transaction Response parameters.
+        ///			TransactionResponse TrxnResponse =  Resp.TransactionResponse;
+        ///			if (TrxnResponse != null)
+        ///			{
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result);
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref);
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg);
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode);
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr);
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip);
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS);
+        ///			}
+        ///			// Get the Fraud Response parameters.
+        ///			FraudResponse FraudResp =  Resp.FraudResponse;
+        ///			if (FraudResp != null)
+        ///			{
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg);
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg);
+        ///			}
+        ///		}
+        ///		// Get the Context and check for any contained SDK specific errors.
+        ///		Context Ctx = Resp.TransactionContext;
+        ///		if (Ctx != null ++ Ctx.getErrorCount() > 0)
+        ///		{
+        ///			Console.WriteLine(Environment.NewLine + "Errors = " + Ctx.ToString());
+        ///		}	
+        ///</code>
+        ///<code lang="Visual Basic" escaped="false">
+        ///		..........
+        ///		..........
+        ///		'Populate required data objects.
+        ///		..........
+        ///		..........
+        ///		
+        ///		'Create a new Authorization Transaction.
+        ///		Dim Trans as New AuthorizationTransaction(
+        ///												UserInfo,
+        ///												PayflowConnectionData,
+        ///												Invoice,
+        ///												Tender, 
+        ///												RequestId)
+        ///		' Submit the transaction.
+        ///		Trans.SubmitTransaction()
+        ///
+        ///		' Get the Response.
+        ///		Dim Resp As Response = Trans.Response
+        ///		
+        ///		If Not Resp Is Nothing Then
+        ///		' Get the Transaction Response parameters.
+        ///		
+        ///			Dim TrxnResponse As TransactionResponse = Resp.TransactionResponse
+        ///			
+        ///			If Not TrxnResponse Is Nothing Then
+        ///				Console.WriteLine("RESULT = " + TrxnResponse.Result)
+        ///				Console.WriteLine("PNREF = " + TrxnResponse.Pnref)
+        ///				Console.WriteLine("RESPMSG = " + TrxnResponse.RespMsg)
+        ///				Console.WriteLine("AUTHCODE = " + TrxnResponse.AuthCode)
+        ///				Console.WriteLine("AVSADDR = " + TrxnResponse.AVSAddr)
+        ///				Console.WriteLine("AVSZIP = " + TrxnResponse.AVSZip)
+        ///				Console.WriteLine("IAVS = " + TrxnResponse.IAVS)
+        ///			End If
+        ///
+        ///			' Get the Fraud Response parameters.
+        ///			Dim FraudResp As FraudResponse = Resp.FraudResponse
+        ///			If Not FraudResp Is Nothing Then
+        ///				Console.WriteLine("PREFPSMSG = " + FraudResp.PreFpsMsg)
+        ///				Console.WriteLine("POSTFPSMSG = " + FraudResp.PostFpsMsg)
+        ///			End If
+        ///		End If
+        ///
+        ///		' Get the Context and check for any contained SDK specific errors.
+        ///		Dim Ctx As Context = Resp.TransactionContext
+        ///		
+        ///		If Not Ctx Is Nothing AndAlso Ctx.getErrorCount() > 0 Then
+        ///			Console.WriteLine(Constants.vbLf + "Errors = " + Ctx.ToString())
+        ///		End If												
+        /// </code>
+        /// </example>
+        public AuthorizationTransaction(UserInfo UserInfo, Invoice Invoice,
+            BaseTender Tender, String RequestId)
+            : this(UserInfo, null, Invoice, Tender, RequestId)
+        {
+        }
 
-		#endregion
+        //constructor to be used in case of basic and order auth
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TrxType"></param>
+        /// <param name="UserInfo"></param>
+        /// <param name="PayflowConnectionData"></param>
+        /// <param name="Invoice"></param>
+        /// <param name="Tender"></param>
+        /// <param name="RequestId"></param>
+        internal AuthorizationTransaction(String TrxType, UserInfo UserInfo, PayflowConnectionData PayflowConnectionData,
+            Invoice Invoice,
+            BaseTender Tender, String RequestId)
+            : base(TrxType, UserInfo, PayflowConnectionData,
+            Invoice,
+            //PaymentDevice ,
+            Tender, RequestId)
+        {
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="TrxType"></param>
+        /// <param name="UserInfo"></param>
+        /// <param name="Invoice"></param>
+        /// <param name="Tender"></param>
+        /// <param name="RequestId"></param>
+        internal AuthorizationTransaction(String TrxType, UserInfo UserInfo, Invoice Invoice,
+            BaseTender Tender, String RequestId)
+            : this(TrxType, UserInfo, null, Invoice, Tender, RequestId)
+        {
+        }
 
-	#region "Core functions"
+        #endregion
 
-		/// <summary>
-		/// Generates the transaction request.
-		/// </summary>
-		internal override void GenerateRequest()
-		{
-			try
-			{
-				base.GenerateRequest();
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGID, mOrigId));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PARTIALAUTH, mPartialAuth));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CREATESECURETOKEN, mCreateSecureToken));
-				RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_SECURETOKENID, mSecureTokenId));
-			}
-			catch (BaseException)
-			{
-				throw;
-			}
-			catch (Exception Ex)
-			{
-				TransactionException TEx = new TransactionException(Ex);
-				throw TEx;
-			}
+        #region "Core functions"
+
+        /// <summary>
+        /// Generates the transaction request.
+        /// </summary>
+        internal override void GenerateRequest()
+        {
+            try
+            {
+                base.GenerateRequest();
+                RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_ORIGID, OrigId));
+                RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_PARTIALAUTH, mPartialAuth));
+                RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_CREATESECURETOKEN, CreateSecureToken));
+                RequestBuffer.Append(PayflowUtility.AppendToRequest(PayflowConstants.PARAM_SECURETOKENID, mSecureTokenId));
+            }
+            catch (BaseException)
+            {
+                throw;
+            }
+            catch (Exception Ex)
+            {
+                TransactionException TEx = new TransactionException(Ex);
+                throw TEx;
+            }
             //catch
             //{
             //    throw new Exception();				
             //}
-		}
+        }
 
-		#endregion
-		
-	}
+        #endregion
+
+    }
+
+    internal class String
+    {
+    }
 }

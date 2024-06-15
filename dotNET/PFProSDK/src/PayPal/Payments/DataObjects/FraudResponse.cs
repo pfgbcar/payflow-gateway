@@ -32,15 +32,10 @@ namespace PayPal.Payments.DataObjects
 		/// </summary>
 		private String mPostFpsMsg;
 
-		/// <summary>
-		/// Holds Fps Pre Xml Data
-		/// </summary>
-		private FpsXmlData mFpsPreXmlData;
-
-		/// <summary>
-		/// Holds Fps Post Xml Data
-		/// </summary>
-		private FpsXmlData mFpsPostXmlData;
+        /// <summary>
+        /// Holds Fps Post Xml Data
+        /// </summary>
+        private FpsXmlData mFpsPostXmlData;
 
 		#region "Constructors"
 
@@ -82,35 +77,32 @@ namespace PayPal.Payments.DataObjects
 		public String PostFpsMsg
 		{
 			get { return mPostFpsMsg; }
-		}		
-
-		/// <summary>
-		/// Gets, Sets  Fps_PreXmlData
-		/// </summary>
-		/// <remarks>
-		/// Gets the FPS Pre Xml data message populated in
-		/// FpsXmlData object.
-		/// Its an itemized list of responses for trigerred filters
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>FPS_PREXMLDATA</code>
-		/// <seealso cref="FpsXmlData"/>
-		/// </remarks>
-		public FpsXmlData Fps_PreXmlData
-		{
-			get { return mFpsPreXmlData; }
 		}
 
-		/// <summary>
-		/// Gets, Sets  Fps_PostXmlData
-		/// </summary>
-		/// <remarks>
-		/// Gets the FPS Post Xml data message populated in
-		/// FpsXmlData object.
-		/// <para>Maps to Payflow Parameter:</para>
-		/// <code>FPS_POSTXMLDATA</code>
-		/// <seealso cref="FpsXmlData"/>
-		/// </remarks>
-		public FpsXmlData Fps_PostXmlData
+        /// <summary>
+        /// Gets, Sets  Fps_PreXmlData
+        /// </summary>
+        /// <remarks>
+        /// Gets the FPS Pre Xml data message populated in
+        /// FpsXmlData object.
+        /// Its an itemized list of responses for trigerred filters
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>FPS_PREXMLDATA</code>
+        /// <seealso cref="FpsXmlData"/>
+        /// </remarks>
+        public FpsXmlData Fps_PreXmlData { get; private set; }
+
+        /// <summary>
+        /// Gets, Sets  Fps_PostXmlData
+        /// </summary>
+        /// <remarks>
+        /// Gets the FPS Post Xml data message populated in
+        /// FpsXmlData object.
+        /// <para>Maps to Payflow Parameter:</para>
+        /// <code>FPS_POSTXMLDATA</code>
+        /// <seealso cref="FpsXmlData"/>
+        /// </remarks>
+        public FpsXmlData Fps_PostXmlData
 		{
 			get { return mFpsPostXmlData; }
 		}
@@ -163,7 +155,7 @@ namespace PayPal.Payments.DataObjects
 			try
 			{
 				XmlData = (String) ResponseHashTable[PayflowConstants.PARAM_FPS_PREXMLDATA];
-				mFpsPreXmlData = SetRules(XmlData);
+				Fps_PreXmlData = SetRules(XmlData);
 				XmlData = (String) ResponseHashTable[PayflowConstants.PARAM_FPS_POSTXMLDATA];
 				mFpsPostXmlData = SetRules(XmlData);
 				ResponseHashTable.Remove(PayflowConstants.PARAM_FPS_PREXMLDATA);
