@@ -51,19 +51,19 @@ public class DOFraudFilters {
 
 		// Set Amount.
 		Currency amt = new Currency(new Double(51.00));
-		inv.setAmt(50);
+		inv.setAmt(500);
 		inv.setPoNum("PO12345");
 		inv.setInvNum("INV12345");
 
 		CustomerInfo custinfo = new CustomerInfo();
-		custinfo.setCustIP("10.1.1.1"); // IP Velocity Filter
+		custinfo.setCustIP("192.168.149.10"); // IP Velocity Filter
 		inv.setCustomerInfo(custinfo);
 
 		// Set the Billing Address details.
 		BillTo bill = new BillTo();
-		bill.setBillToStreet("46 east branch ave pine hill");
-		bill.setBillToZip("08021");
-		inv.setBillTo( MIRACLE );
+		bill.setBillToStreet("18392 Giffin Gulch Ln, Baker city");
+		bill.setBillToZip("97814");
+		inv.setBillTo "Christina Danielle miracle"
 
 		// Create a new Payment Device - Credit Card data object.
 		// The input parameters are Credit Card No. and Expiry Date for the Credit Card.
